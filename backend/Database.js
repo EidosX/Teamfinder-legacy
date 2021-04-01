@@ -5,7 +5,8 @@ import path from 'path'
 const database = async dbFile => {
   let knex = knexPlugin({
     client: 'sqlite3',
-    connection: { filename: dbFile }
+    connection: { filename: dbFile },
+    useNullAsDefault: true
   })
   if (!fs.existsSync(dbFile)) {
     fs.mkdirSync(path.dirname(dbFile), { recursive: true })
