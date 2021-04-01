@@ -28,3 +28,8 @@ app.post('/api/auth', async (req, res) => {
   req.session.userId = userId
   success(res)
 })
+
+app.delete('/api/auth', (req, res) => {
+  delete req.session.userId
+  success(res)
+})
