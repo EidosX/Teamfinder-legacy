@@ -3,6 +3,10 @@ import { error, success } from './JsonResponses.js'
 import bcrypt from 'bcrypt'
 
 app.post('/api/auth', async (req, res) => {
+  if (res.locals.user) {
+    success(res)
+    return
+  }
   if (!req?.body?.nickname || !req?.body?.password) {
     error(res, 'nickname and password parameters are mandatory')
     return

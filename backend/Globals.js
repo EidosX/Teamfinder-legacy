@@ -3,6 +3,7 @@ import yaml from 'js-yaml'
 import fs from 'fs'
 import session from 'express-session'
 import database from './Database.js'
+import { authHook } from './Hooks/AuthHook.js'
 
 export const app = express()
 app.use(express.urlencoded({ extended: true }))
@@ -14,6 +15,7 @@ app.use(
     saveUninitialized: false
   })
 )
+app.use(authHook)
 
 export const db = await database('./db/database.db')
 
