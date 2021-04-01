@@ -1,13 +1,7 @@
 import { db, app } from '../../Globals.js'
 import { Rank } from '../../Database.js'
 import bcrypt from 'bcrypt'
-
-let error = (res, msg) => {
-  res.send({
-    status: 'ERROR',
-    error: msg
-  })
-}
+import { error, success } from './JsonResponses.js'
 
 app.get('/api/users', async (req, res) => {
   res.send(await db('Users'))
@@ -71,5 +65,5 @@ app.post('/api/users', async (req, res) => {
     })
   })
 
-  res.send({ status: 'OK' })
+  success()
 })
