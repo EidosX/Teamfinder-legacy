@@ -4,7 +4,10 @@ import fs from 'fs'
 import database from './Database.js'
 
 export const app = express()
-export const db = database('./db/database.db')
+app.use(express.urlencoded({ extended: true }))
+
+export const db = await database('./db/database.db')
+
 export const cfg = {
   server: yaml.load(fs.readFileSync('config/server.yml'))
 }
