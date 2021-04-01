@@ -5,4 +5,4 @@ export const error = (res, msg) => {
   })
 }
 
-export const success = (res, _) => res.send({ status: 'OK' })
+export const success = res => res.send({ status: 'OK' })

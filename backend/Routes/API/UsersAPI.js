@@ -65,5 +65,5 @@ app.post('/api/users', async (req, res) => {
     })
   })
 
-  success()
+  success(res)
 })
