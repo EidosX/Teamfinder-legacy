@@ -16,12 +16,12 @@ const database = async dbFile => {
 }
 export default database
 
-const Rank = {
+export const Rank = {
   USER: 'USER',
   MOD: 'MOD'
 }
 
-const ApplicationStatus = {
+export const ApplicationStatus = {
   REJECTED: 'REJECTED',
   WAITING: 'WAITING',
   ACCEPTED: 'ACCEPTED'
@@ -33,6 +33,7 @@ async function createDb(knex) {
       table.increments('id')
       table.string('nickname').notNullable().unique()
       table.string('email').notNullable().unique()
+      table.string('password').notNullable()
       table.string('rank').nullable().defaultTo(Rank.USER)
     })
     .createTable('SocialMedias', table => {
