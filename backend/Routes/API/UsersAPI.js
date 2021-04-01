@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import { error, success } from './JsonResponses.js'
 
 app.get('/api/users', async (req, res) => {
-  res.send(await db('Users'))
+  res.send(await db('Users').select('id', 'nickname', 'email', 'rank'))
 })
 
 app.post('/api/users', async (req, res) => {
