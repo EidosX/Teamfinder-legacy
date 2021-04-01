@@ -1,0 +1,26 @@
+{
+  "name": "teamfinder",
+  "version": "0.0.1",
+  "description": "Website to find your next team 🔥",
+  "main": "backend/Main.js",
+  "scripts": {
+    "start": "node backend/Main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedRikudo/L2WebProject.git"
+  },
+  "author": "Diego Imbert",
+  "bugs": {
+    "url": "https://github.com/RedRikudo/L2WebProject/issues"
+  },
+  "homepage": "https://github.com/RedRikudo/L2WebProject#readme",
+  "type": "module",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "js-yaml": "^4.0.0",
+    "knex": "^0.95.4",
+    "sqlite3": "^5.0.2"
+  }
+}
