@@ -121,3 +121,11 @@
 </html>
 
 <script src="res/js/topbar.js"></script>
+
+<script>
+  document.addEventListener('click', e => {
+    if (e.target.matches('#category-selector .category')) {
+      console.log(e.target.classList.toggle('selected'))
+    }
+  })
+</script>

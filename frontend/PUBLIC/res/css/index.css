@@ -32,10 +32,11 @@
   margin: 0.2rem 0.35rem;
   user-select: none;
   cursor: pointer;
+  transition: box-shadow 0.16s;
 }
 
 #category-selector .category.selected {
-  box-shadow: 0 0 0.8rem var(--color);
+  box-shadow: 0 0 1.2rem var(--color), 0 0 0.3rem var(--color);
 }
 
 .recruitment {
