@@ -68,7 +68,7 @@
     divDOM.append(emailDOM)
     const passwordDOM = makeInput('Mot de passe', true)
     divDOM.append(passwordDOM)
-    const confirmationDOM = makeInput('Confirmation')
+    const confirmationDOM = makeInput('Confirmation', true)
     divDOM.append(confirmationDOM)
 
     const sendButton = document.createElement('button')
