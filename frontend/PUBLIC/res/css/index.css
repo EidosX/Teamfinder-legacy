@@ -1,0 +1,85 @@
+#main-container {
+  width: 100vw;
+  height: calc(100vh - var(--TOP-BAR-HEIGHT));
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+.quick-panel {
+  flex: 1;
+}
+#feed {
+  width: min(48rem, 100vw);
+  height: 100%;
+}
+#category-selector {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  font-weight: 600;
+  padding: 1rem 0 0 0;
+}
+.category {
+  color: #1a1c21;
+  padding: 0 1.2rem;
+  border-radius: 1000px;
+  background-color: var(--color);
+}
+#category-selector .category {
+  line-height: 2.5rem;
+  margin: 0.2rem 0.35rem;
+  user-select: none;
+  cursor: pointer;
+}
+
+#category-selector .category.selected {
+  box-shadow: 0 0 0.8rem var(--color);
+}
+
+.recruitment {
+  width: 100%;
+  position: relative;
+}
+
+.recruitment .profile-pic {
+  border-radius: 1000px;
+  width: 5rem;
+  height: 5rem;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+}
+
+.recruitment .container {
+  background-color: #3d3948;
+  border-radius: 1.5rem;
+  margin-top: 1rem;
+  min-height: 5.5rem;
+  padding: 1.2rem 5rem 1rem 2.2rem;
+}
+.recruitment .container .infos {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+.recruitment .container .category {
+  padding: 0 0.9rem;
+  line-height: 1.7rem;
+  font-size: 0.9rem;
+}
+.recruitment .container .upload-date {
+  margin-left: 0.8rem;
+  color: #ffffff80;
+  font-size: 0.9rem;
+}
+.recruitment .container h2 {
+  font-size: 1.65rem;
+  line-height: 120%;
+  word-wrap: break-word;
+}
+.recruitment .container p {
+  font-size: 1rem;
+  word-wrap: break-word;
+}
