@@ -66,7 +66,7 @@
     divDOM.append(usernameDOM)
     const emailDOM = makeInput('Adresse email')
     divDOM.append(emailDOM)
-    const passwordDOM = makeInput('Mot de passe')
+    const passwordDOM = makeInput('Mot de passe', true)
     divDOM.append(passwordDOM)
     const confirmationDOM = makeInput('Confirmation')
     divDOM.append(confirmationDOM)
@@ -98,11 +98,12 @@
 
     return divDOM
 
-    function makeInput(placeholder) {
+    function makeInput(placeholder, isPassword = false) {
       const divDOM = document.createElement('div')
       divDOM.className = 'input'
 
       const inputDOM = document.createElement('input')
+      if (isPassword) inputDOM.type = 'password'
       divDOM.append(inputDOM)
 
       const placeholderDOM = document.createElement('p')
