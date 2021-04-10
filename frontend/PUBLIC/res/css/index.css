@@ -6,9 +6,37 @@
   justify-content: center;
   overflow-x: hidden;
 }
+
 .quick-panel {
   flex: 1;
+  margin: 0 2rem;
 }
+@media screen and (max-width: 1275px) {
+  .quick-panel {
+    display: none;
+  }
+}
+.quick-panel h2 {
+  margin-top: 1.3rem;
+  padding-bottom: 0.3rem;
+  font-weight: 700;
+}
+.quick-panel h3 {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.quick-panel :is(.application, .recruitment) {
+  margin-top: 1rem;
+}
+.quick-panel :is(.message, .date, .answers) {
+  font-size: 0.7rem;
+  color: #ffffff80;
+}
+
+.quick-panel.recruitments {
+  margin-left: 3.5rem;
+}
+
 #feed {
   width: min(48rem, 100vw);
   height: 100%;
