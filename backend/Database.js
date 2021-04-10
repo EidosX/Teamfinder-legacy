@@ -11,6 +11,7 @@ const database = async dbFile => {
   if (!fs.existsSync(dbFile)) {
     fs.mkdirSync(path.dirname(dbFile), { recursive: true })
     await createDb(knex)
+    await createCategories(knex)
   }
   return knex
 }
@@ -35,6 +36,7 @@ async function createDb(knex) {
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('rank').nullable().defaultTo(Rank.USER)
+      table.datetime('created').notNullable().defaultTo(knex.fn.now())
     })
     .createTable('SocialMedias', table => {
       table.increments('id')
@@ -57,6 +59,7 @@ async function createDb(knex) {
       table.integer('category_id').references('Categories.id').notNullable()
       table.string('title').notNullable()
       table.string('description').notNullable()
+      table.datetime('created').notNullable().defaultTo(knex.fn.now())
     })
     .createTable('Applications', table => {
       table.increments('id')
@@ -67,5 +70,15 @@ async function createDb(knex) {
         .notNullable()
       table.string('message').notNullable()
       table.string('status').notNullable().defaultTo('WAITING')
+      table.datetime('created').notNullable().defaultTo(knex.fn.now())
     })
+}
+
+async function createCategories(knex) {
+  await knex('Categories').insert({ title: 'Musique' })
+  await knex('Categories').insert({ title: 'Programmation' })
+  await knex('Categories').insert({ title: 'Jeux-vidéos' })
+  await knex('Categories').insert({ title: 'Sport' })
+  await knex('Categories').insert({ title: 'Cinéma' })
+  await knex('Categories').insert({ title: 'Autre' })
 }
