@@ -4,6 +4,14 @@ import bcrypt from 'bcrypt'
 import { error, success } from './JsonResponses.js'
 
 app.get('/api/users', async (req, res) => {
+  if (req.query.id) {
+    const x = await db('Users')
+      .select('nickname', 'email', 'rank')
+      .where('id', '=', req.query.id)
+    if (!x.length) error(res, 'NOT FOUND')
+    else res.send(x[0])
+    return
+  }
   res.send(await db('Users').select('id', 'nickname', 'email', 'rank'))
 })
 
