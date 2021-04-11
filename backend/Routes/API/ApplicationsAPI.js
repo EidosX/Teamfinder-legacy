@@ -2,6 +2,16 @@ import { db, app } from '../../Globals.js'
 import { error, success } from './JsonResponses.js'
 
 app.get('/api/applications', async (req, res) => {
+  if (req.query.recruitment_id) {
+    res.send(
+      await db('Applications').where(
+        'recruitment_id',
+        '=',
+        req.query.recruitment_id
+      )
+    )
+    return
+  }
   res.send(await db('Applications'))
 })
 
