@@ -1,0 +1,20 @@
+{
+  "name": "teamfinder",
+  "version": "1.0.0",
+  "description": "The website to find your next teammates! 🔥",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedRikudo/L2WebProject.git"
+  },
+  "author": "Diego Imbert",
+  "scripts": {
+    "start": "node backend/main.js",
+    "dev": "nodemon backend/main.js"
+  },
+  "devDependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
