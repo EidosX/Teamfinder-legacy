@@ -1,0 +1,51 @@
+#topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3d3948;
+  height: 4.5rem;
+  padding: 0 2rem;
+}
+
+#topbar :is(.logo, svg.logo > image) {
+  --size: 2.5rem;
+  width: var(--size);
+  height: var(--size);
+  cursor: pointer;
+}
+
+#topbar .search-bar {
+  position: relative;
+  width: 25rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+#topbar .search-bar :is(.icon, svg.icon > image) {
+  --size: 1.15rem;
+  width: var(--size);
+  height: var(--size);
+  position: absolute;
+}
+#topbar .search-bar .mag-glass {
+  left: 1.1rem;
+}
+#topbar .search-bar .arrow-right {
+  right: 1.2rem;
+}
+#topbar .search-bar input {
+  border-radius: 1000px;
+  outline: none;
+  border: 2px solid #ffffff;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding: 0 2.5rem 0 2.8rem;
+  color: white;
+  font-size: 1rem;
+  font-family: 'Poppins', 'sans serif';
+  box-sizing: border-box;
+}
+#topbar .search-bar input:focus {
+  border: 3px solid #00b2ff;
+}
