@@ -1,8 +1,8 @@
 export const DefaultCategories = Object.freeze([
-  'Musique',
-  'Programmation',
-  'Jeux-vidéos',
-  'Sport',
-  'Cinema',
-  'Autre'
+  { title: 'Musique' },
+  { title: 'Programmation' },
+  { title: 'Jeux-vidéos' },
+  { title: 'Sport' },
+  { title: 'Cinema' },
+  { title: 'Autre' }
 ])
