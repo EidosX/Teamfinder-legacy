@@ -19,6 +19,7 @@ if (!fs.existsSync(dbPath)) {
     table.increments('id')
     table.string('nickname').unique()
     table.string('email').unique()
+    table.string('password').notNullable()
     table.integer('rank').notNullable().defaultTo(Ranks.DEFAULT)
     table.string('facebook').nullable().defaultTo(null)
     table.string('twitter').nullable().defaultTo(null)
