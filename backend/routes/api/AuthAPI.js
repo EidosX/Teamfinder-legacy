@@ -7,7 +7,7 @@ export default function authAPI({ app }) {
     res.send({ status: res.locals.user ? 'CONNECTED' : 'DISCONNECTED' })
   )
   app.post('/api/auth', async (req, res) => {
-    if (res.locals.user) return res.send(ok())
+    if (res.locals.user) return res.send(err('Déjà connecté'))
     if (!req.body.nickname) return res.send(err('Le pseudonyme est obligatoire'))
     if (!req.body.password) return res.send(err('Le mot de passe est obligatoire'))
     const dbUser = await db('Users')
@@ -20,6 +20,11 @@ export default function authAPI({ app }) {
       return res.send(err('Mot de passe invalide'))
 
     req.session.userId = dbUser.id
+    res.send(ok())
+  })
+  app.delete('/api/auth', (req, res) => {
+    if (!res.locals.user) return res.send(err("Vous n'êtes pas connecté"))
+    delete req.session.userId
     res.send(ok())
   })
 }
