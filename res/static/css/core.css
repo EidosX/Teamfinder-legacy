@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,4 +7,24 @@
 
 body {
   background-color: #1a1c21;
+  color: #ffffff;
+  font-family: 'Poppins', 'sans serif';
+}
+
+:root {
+  --CENTER-WIDTH: 50rem;
+}
+
+#main {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+#main > :is(.right, .left) {
+  flex: 1;
+}
+
+#main > .center {
+  width: var(--CENTER-WIDTH);
 }
