@@ -27,9 +27,11 @@ if (!fs.existsSync(dbPath)) {
   await knex.schema.createTable('Categories', table => {
     table.increments('id')
     table.string('title').notNullable()
+    table.string('color').notNullable()
   })
   DefaultCategories.forEach(
-    async ({ title }) => await knex('Categories').insert({ title })
+    async ({ title, color }) =>
+      await knex('Categories').insert({ title, color })
   )
 
   await knex.schema.createTable('Recruitments', table => {
