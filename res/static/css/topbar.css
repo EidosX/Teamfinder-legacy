@@ -4,7 +4,6 @@
   align-items: center;
   background-color: #3d3948;
   height: 4.5rem;
-  padding: 0 2rem;
 }
 
 #topbar :is(.logo, svg.logo > image) {
@@ -12,11 +11,13 @@
   width: var(--size);
   height: var(--size);
   cursor: pointer;
+  padding: 0 2rem;
 }
 
 #topbar .search-bar {
   position: relative;
-  width: 25rem;
+  max-width: 30rem;
+  flex: 1;
   height: 3rem;
   display: flex;
   align-items: center;
