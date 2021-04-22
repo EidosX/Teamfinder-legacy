@@ -1,3 +1,9 @@
+<% const renderCategory = ({id, title, color}) => { %>
+<div class="category" style="--color: <%= color %>" data-id="<%=id%>">
+  <p class="name"><%- title.replaceAll('-', '&#x2011;') %></p>
+</div>
+<% } %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,11 +20,7 @@
       <div class="left"></div>
       <div class="center">
         <div id="category-selector">
-          <% for (const {id, title, color} of categories) { %>
-          <div class="category" style="--color: <%= color %>" data-id="<%=id%>">
-            <p class="name"><%- title.replaceAll('-', '&#x2011;') %></p>
-          </div>
-          <% } %>
+          <% categories.forEach(renderCategory) %>
         </div>
       </div>
       <div class="right"></div>
