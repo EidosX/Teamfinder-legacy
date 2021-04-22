@@ -37,18 +37,20 @@ if (!fs.existsSync(dbPath)) {
 
   await knex.schema.createTable('Recruitments', table => {
     table.increments('id')
-    table.integer('user_id').unsigned().references('Users')
-    table.integer('category_id').unsigned().references('Categories')
+    table.integer('user_id').unsigned().references('Users.id')
+    table.integer('category_id').unsigned().references('Categories.id')
     table.string('title').notNullable()
     table.string('description').notNullable()
+    table.datetime('created').notNullable().defaultTo(knex.fn.now())
   })
 
   await knex.schema.createTable('Applications', table => {
     table.increments('id')
-    table.integer('user_id').unsigned().references('Users')
-    table.integer('recruitment_id').unsigned().references('Recruitments')
+    table.integer('user_id').unsigned().references('Users.id')
+    table.integer('recruitment_id').unsigned().references('Recruitments.id')
     table.string('message').notNullable()
     table.integer('status').defaultTo(ApplicationStatus.WAITING)
+    table.datetime('created').notNullable().defaultTo(knex.fn.now())
   })
 }
 export default knex
