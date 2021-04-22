@@ -1,9 +1,9 @@
 import knexPlugin from 'knex'
 import path from 'path'
 import fs from 'fs'
-import { Ranks } from './misc/Ranks.js'
-import { ApplicationStatus } from './misc/Applications.js'
-import { DefaultCategories } from './misc/Categories.js'
+import { Ranks } from '../misc/Ranks.js'
+import { ApplicationStatus } from '../misc/Applications.js'
+import { DefaultCategories } from '../misc/Categories.js'
 
 const dbPath = path.resolve('res/db/sqlite.db')
 const knex = knexPlugin({
