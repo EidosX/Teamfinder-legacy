@@ -22,6 +22,7 @@ if (!fs.existsSync(dbPath)) {
     table.integer('rank').notNullable().defaultTo(Ranks.DEFAULT)
     table.string('facebook').nullable().defaultTo(null)
     table.string('twitter').nullable().defaultTo(null)
+    table.string('profile_pic_url').nullable()
   })
 
   await knex.schema.createTable('Categories', table => {
