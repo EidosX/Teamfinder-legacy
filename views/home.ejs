@@ -3,7 +3,9 @@
   <p class="name"><%- title.replaceAll('-', '&#x2011;') %></p>
 </div>
 <% } %>
-
+<!---->
+<% const formatDate = d => `${d.substring(5,7)}/${d.substring(8,
+10)}/${d.substring(0,4)}`; const formatTime = d => d.substring(11, 16) %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,6 +23,28 @@
       <div class="center">
         <div id="category-selector">
           <% categories.forEach(renderCategory) %>
+        </div>
+        <div class="recruitment-feed">
+          <% for (const r of recruitments) { const user = users.find(({id}) =>
+          id == r.user_id); %>
+          <div class="recruitment">
+            <img
+              src="<%= user.profile_pic_url || '/static/img/default-profile-pic.jpg' %>"
+              alt="Photo de profil de <%= user.nickname %>"
+              title="<%= user.nickname %>"
+              class="profile-pic"
+            />
+            <h1 class="title"><%= r.title %></h1>
+            <div class="meta">
+              <% renderCategory(categories.find(({id})=>id==r.category_id)) %>
+              <p class="created">
+                Publié le <%= formatDate(r.created) %> à
+                <%=formatTime(r.created) %>
+              </p>
+            </div>
+            <p class="description"><%= r.description %></p>
+          </div>
+          <% } %>
         </div>
       </div>
       <div class="right"></div>

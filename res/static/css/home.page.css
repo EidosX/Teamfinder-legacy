@@ -2,30 +2,68 @@
   display: flex;
   width: 100%;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
-  height: 5rem;
+  margin: 1.2rem 0;
+}
+#category-selector .category {
+  cursor: pointer;
+  user-select: none;
+  margin: 0.25rem 0.4rem;
+  transition: box-shadow 200ms;
+}
+#category-selector .category > * {
+  pointer-events: none;
 }
 .category {
   height: 2.5rem;
   background-color: var(--color);
   padding: 0 1.3rem;
-  margin: 0.25rem 0.4rem;
   border-radius: 1000px;
-  user-select: none;
-  cursor: pointer;
 
   display: grid;
   place-items: center;
 
   color: black;
   font-weight: 600;
-  transition: box-shadow 200ms;
 }
 .category.selected {
   box-shadow: 0 0 0.2rem #ffffff75, 0 0 0.6rem var(--color),
     0 0 1.4rem var(--color);
 }
-.category > * {
-  pointer-events: none;
+
+/* Recruitments! */
+
+.recruitment {
+  position: relative;
+  background-color: #3d3948;
+  padding: 1rem 2.5rem 1.5rem 2.5rem;
+  border-radius: 1.5rem;
+}
+.recruitment:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+.recruitment .profile-pic {
+  border-radius: 1000px;
+  --size: 6rem;
+  width: var(--size);
+  height: var(--size);
+  position: absolute;
+  top: -0.7rem;
+  right: -0.7rem;
+}
+.recruitment .meta {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0.6rem 0;
+}
+.recruitment .meta .category {
+  height: 1.7rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  padding: 0 0.8rem;
+}
+.recruitment .meta .created {
+  font-size: 0.9rem;
+  color: #807b8a;
+  margin-left: 0.8rem;
 }
