@@ -11,14 +11,14 @@
   width: var(--size);
   height: var(--size);
   cursor: pointer;
-  padding: 0 2rem;
+  margin: 0 2rem;
 }
 
 #topbar .search-bar {
   position: relative;
   max-width: 30rem;
   flex: 1;
-  height: 3rem;
+  height: 2.8rem;
   display: flex;
   align-items: center;
 }
@@ -33,6 +33,7 @@
 }
 #topbar .search-bar .arrow-right {
   right: 1.2rem;
+  cursor: pointer;
 }
 #topbar .search-bar input {
   border-radius: 1000px;
