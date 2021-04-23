@@ -23,9 +23,9 @@ export default async function initPagesRoutes({ app }) {
   })
 
   app.post('/recruitment/:id', authHook, async (req, res) => {
-    const thisUrl = '/recruitment/' + recruitment.id
     const recruitment = await db('Recruitments').where('id', '=', req.params.id).first()
     if (!recruitment) return sendToErrorPage(res, 'Recrutement introuvable', thisUrl)
+    const thisUrl = '/recruitment/' + recruitment.id
     if (!req.body.message)
       return sendToErrorPage(res, 'Vous devez entrer un message', thisUrl)
     await db('Applications').insert({
