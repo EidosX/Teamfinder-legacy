@@ -13,3 +13,10 @@ document.getElementById('category-selector').addEventListener('click', e => {
     e.target.classList.remove('selected')
   }
 })
+
+onLoginEvents.push(() => {
+  document.getElementById('new-recruitment-button').classList.remove('hidden')
+})
+onDisconnectEvents.push(() => {
+  document.getElementById('new-recruitment-button').classList.add('hidden')
+})

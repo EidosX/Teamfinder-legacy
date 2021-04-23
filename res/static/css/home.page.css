@@ -59,3 +59,20 @@
   color: #807b8a;
   margin-left: 0.8rem;
 }
+
+#new-recruitment-button,
+#new-recruitment-button image {
+  --SIZE: 4.5rem;
+  width: var(--SIZE);
+  height: var(--SIZE);
+  position: fixed;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  filter: drop-shadow(0 0 0.2rem #000000b0);
+  cursor: pointer;
+  transition: opacity 300ms;
+}
+#new-recruitment-button.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
