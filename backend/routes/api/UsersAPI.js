@@ -23,7 +23,7 @@ export default function usersAPI({ app }) {
     let emailAlreadyTaken = await db('Users')
       .whereRaw('LOWER(Users.email) = ?', email.toLowerCase())
       .first()
-    if (emailAlreadyTaken) return err(res, 'Un compte existe déjà avec ce mail')
+    if (emailAlreadyTaken) return res.send(err('Un compte existe déjà avec ce mail'))
 
     if (passwordPlain.length < 6) return res.send(err('Mot de passe trop court'))
     if (passwordPlain.length > 20) return res.send(err('Mot de passe trop long'))
