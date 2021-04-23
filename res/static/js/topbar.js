@@ -116,7 +116,7 @@
     if (!e.target.matches('#user-menu input')) return
     setTimeout(() => {
       const placeholderDOM = e.target.parentNode.querySelector('.placeholder')
-      if (e.target.value) placeholderDOM.classList.add('above')
+      if (e.target.value ?? 0) placeholderDOM.classList.add('above')
       else placeholderDOM.classList.remove('above')
     }, 0)
   })
