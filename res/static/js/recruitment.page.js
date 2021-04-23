@@ -14,9 +14,12 @@ async function setApplicationStatus(applicationID, status) {
 }
 
 onLoginEvents.push(() => {
-  Array.from(document.getElementById('applications').children).forEach(c => {
-    c?.querySelector('.selectors').classList.remove('hidden')
-  })
+  console.log(myNickname)
+  console.log(recruiterNickname)
+  if (myNickname === recruiterNickname)
+    Array.from(document.getElementById('applications').children).forEach(c => {
+      c?.querySelector('.selectors').classList.remove('hidden')
+    })
 })
 onDisconnectEvents.push(() => {
   Array.from(document.getElementById('applications').children).forEach(c => {
