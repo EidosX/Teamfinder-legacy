@@ -1,3 +1,6 @@
+var onLoginEvents = []
+var onDisconnectEvents = []
+
 {
   const htmlSrc = `
   <div id=topbar>
@@ -81,6 +84,7 @@
           if (response.status === 'ERROR') return notify(response.message, 'error')
           notify('Vous etes connecté!', 'ok')
           setUserMenuState('connected')
+          onLoginEvents.forEach(f => f())
         }
         return formDOM
       }
@@ -145,6 +149,7 @@
           if (response.status === 'ERROR') return notify(response.message, 'error')
           notify('Vous avez bien été déconnecté.', 'info')
           setUserMenuState('login')
+          onDisconnectEvents.forEach(f => f())
         }
         return divDOM
       }
