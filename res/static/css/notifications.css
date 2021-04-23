@@ -1,0 +1,38 @@
+#notifications {
+  position: fixed;
+  z-index: 10;
+  margin: auto;
+  margin-top: 0.8rem;
+  margin-left: 0.8rem;
+}
+.notification {
+  background-color: #25252c;
+  border: 2px solid #bfc0d4;
+  width: 24rem;
+  padding: 1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  border-radius: 1.2rem;
+  box-shadow: 0 0 1rem #000000c5;
+
+  transform: translateY(-4rem);
+  opacity: 0;
+}
+.notification,
+.ghost {
+  transition: 800ms;
+}
+.notification.proper-pos {
+  transform: none;
+  opacity: 1;
+}
+.notification :is(.icon, svg.icon > image) {
+  --size: 2.5rem;
+  width: var(--size);
+  height: var(--size);
+  margin-right: 1.2rem;
+  flex-shrink: 0;
+}
+.notification .message {
+  text-overflow: clip;
+}
