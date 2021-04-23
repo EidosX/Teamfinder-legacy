@@ -14,21 +14,8 @@
 #category-selector .category > * {
   pointer-events: none;
 }
-.category {
-  height: 2.5rem;
-  background-color: var(--color);
-  padding: 0 1.3rem;
-  border-radius: 1000px;
-
-  display: grid;
-  place-items: center;
-
-  color: black;
-  font-weight: 600;
-}
 .category.selected {
-  box-shadow: 0 0 0.2rem #ffffff75, 0 0 0.6rem var(--color),
-    0 0 1.4rem var(--color);
+  box-shadow: 0 0 0.2rem #ffffff75, 0 0 0.6rem var(--color), 0 0 1.4rem var(--color);
 }
 
 /* Recruitments! */

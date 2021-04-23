@@ -17,6 +17,24 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  color: #98d6ff;
+  font-weight: 600;
+}
+
+.category {
+  height: 2.5rem;
+  background-color: var(--color);
+  padding: 0 1.3rem;
+  border-radius: 1000px;
+
+  display: grid;
+  place-items: center;
+
+  color: black;
+  font-weight: 600;
+}
+
 :root {
   --CENTER-WIDTH: 50rem;
 }
