@@ -172,3 +172,30 @@
   font-size: 0.7rem;
   color: #ffffff81;
 }
+#user-menu-connected button {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.15rem;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #9a9ca846;
+}
+#user-menu-connected button:last-child {
+  border-bottom: none;
+  padding-bottom: 0.2rem;
+}
+#user-menu-connected button:first-child {
+  padding-top: 0.5rem;
+}
+#user-menu-connected button :is(svg, svg > image) {
+  --SIZE: 2.2rem;
+  width: var(--SIZE);
+  height: var(--SIZE);
+  position: absolute;
+  right: 2.2rem;
+}
