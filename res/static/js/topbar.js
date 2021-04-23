@@ -1,5 +1,6 @@
 var onLoginEvents = []
 var onDisconnectEvents = []
+var myNickname = null
 
 {
   const htmlSrc = `
@@ -84,6 +85,7 @@ var onDisconnectEvents = []
           if (response.status === 'ERROR') return notify(response.message, 'error')
           notify('Vous etes connecté!', 'ok')
           setUserMenuState('connected')
+          myNickname = e.target.elements.nickname.value
           onLoginEvents.forEach(f => f())
         }
         return formDOM
@@ -149,6 +151,7 @@ var onDisconnectEvents = []
           if (response.status === 'ERROR') return notify(response.message, 'error')
           notify('Vous avez bien été déconnecté.', 'info')
           setUserMenuState('login')
+          myNickname = null
           onDisconnectEvents.forEach(f => f())
         }
         return divDOM
