@@ -63,3 +63,93 @@
 #topbar .search-bar input:focus {
   border: 3px solid #00b2ff;
 }
+
+/* User Menu */
+
+#user-menu {
+  position: fixed;
+  right: 0;
+  z-index: 5;
+  width: 20rem;
+  background-color: #222429;
+  border: 1px solid #5b5862;
+  box-shadow: 0 0 1rem black;
+  overflow: hidden;
+  border-bottom-left-radius: 1.5rem;
+
+  --TRANSITION: 520ms ease-in-out;
+}
+#user-menu.hidden {
+  transform: translateY(-105%);
+}
+#user-menu.with-transition {
+  transition: transform var(--TRANSITION);
+}
+
+#user-menu-ghost {
+  transition: height var(--TRANSITION);
+}
+
+#user-menu > :not(#user-menu-ghost) {
+  position: absolute;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 2.4rem 1.5rem;
+  transform: translateX(-100%);
+  transition: transform var(--TRANSITION);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#user-menu > :not(#user-menu-ghost).proper-pos {
+  transform: translateX(0);
+}
+#user-menu > :not(#user-menu-ghost).hidden-pos {
+  transform: translateX(100%);
+}
+
+#user-menu .input {
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.4rem;
+}
+#user-menu input {
+  width: 100%;
+  height: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+  border-radius: 1000px;
+  border: none;
+  outline: none;
+}
+#user-menu input:focus {
+  border: 2px solid #00b2ff;
+}
+#user-menu :is(input[type='submit'], button) {
+  cursor: pointer;
+  outline: none;
+}
+#user-menu input[type='submit'] {
+  width: auto;
+  padding: 0 2rem;
+  background-color: #00b2ff;
+  color: white;
+  font-weight: 600;
+}
+#user-menu input[type='submit']:focus {
+  border: 2px solid #ffffff;
+}
+.signup-instead,
+.login-instead {
+  border: none;
+  background: none;
+  color: #9b99a8;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+:is(.signup-instead, .login-instead):focus {
+  color: white;
+}
