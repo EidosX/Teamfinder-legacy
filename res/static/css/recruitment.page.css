@@ -57,15 +57,15 @@ h2 {
   height: var(--SIZE);
 }
 
-.application .status.s-1::after {
+.application.status-1 .status::after {
   content: ' refusé';
   color: #ff4747;
 }
-.application .status.s0::after {
+.application.status0 .status::after {
   content: ' en attente';
   color: #acc9ff;
 }
-.application .status.s1::after {
+.application.status1 .status::after {
   content: ' accepté';
   color: #47ff7e;
   font-weight: 600;
@@ -117,4 +117,24 @@ h2 {
 
 #postulate-form input[type='submit']:focus {
   border: 2px solid #ffffff;
+}
+
+.selectors {
+  position: absolute;
+  margin-top: 0.8rem;
+  right: 0;
+  transition: opacity 300ms;
+  opacity: 0;
+  pointer-events: none;
+}
+.application.status0 .selectors:not(.hidden) {
+  opacity: 1;
+  pointer-events: all;
+}
+.selectors :is(.icon, image) {
+  --SIZE: 2rem;
+  width: var(--SIZE);
+  height: var(--SIZE);
+  margin-left: 0.6rem;
+  cursor: pointer;
 }

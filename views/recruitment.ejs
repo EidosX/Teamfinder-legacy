@@ -18,6 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/core.css" />
     <link rel="stylesheet" href="/static/css/recruitment.page.css" />
+    <script src="/static/js/recruitment.page.js" defer></script>
     <title>Teamfinder</title>
   </head>
   <body>
@@ -44,9 +45,17 @@
         </div>
         <hr />
         <h2>Candidatures</h2>
-        <div class="applications">
+        <div id="applications">
           <% for (const a of applications) { const u=users.find(u=>u.id === a.user_id); %>
-          <div class="application">
+          <div class="application status<%= a.status %> id<%= a.id %>">
+            <div class="selectors <%= locals.user ? '' : 'hidden' %>">
+              <svg class="icon reject" onclick="setApplicationStatus('<%= a.id %>', -1)">
+                <image href="/static/svg/cross.svg" />
+              </svg>
+              <svg class="icon accept" onclick="setApplicationStatus('<%= a.id %>', 1)">
+                <image href="/static/svg/ok-icon.svg" />
+              </svg>
+            </div>
             <div class="infos">
               <a href="/users/<%= u.id %>"
                 ><img
@@ -60,7 +69,7 @@
                 <p class="created">
                   Posté le <%= formatDate(a.created) %> à <%= formatTime(a.created) %>
                 </p>
-                <p class="status s<%= a.status %>">Status:</p>
+                <p class="status">Status:</p>
               </span>
             </div>
             <p class="message"><%= a.message %></p>
