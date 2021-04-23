@@ -99,3 +99,22 @@ h2 {
 #postulate-form textarea:focus {
   border: 2px solid #55bbff;
 }
+#postulate-form input[type='submit'] {
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  width: 15rem;
+  height: 2.5rem;
+  border-radius: 1000px;
+  border: none;
+  outline: none;
+  background-color: #55bbff;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+}
+
+#postulate-form input[type='submit']:focus {
+  border: 2px solid #ffffff;
+}
