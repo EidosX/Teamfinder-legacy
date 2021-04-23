@@ -1,7 +1,9 @@
 {
   const htmlSrc = `
   <div id=topbar>
-    <svg class="teamfinder logo"><image href="/static/svg/teamfinder-logo.svg" /></svg>
+    <a href="/">
+      <svg class="teamfinder logo"><image href="/static/svg/teamfinder-logo.svg" /></svg>
+    </a>
     <div class=search-bar>
       <svg class="mag-glass icon"><image href="/static/svg/mag-glass.svg" /></svg>
       <svg class="arrow-right icon"><image href="/static/svg/arrow-right.svg" /></svg>
