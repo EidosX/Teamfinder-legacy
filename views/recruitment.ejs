@@ -1,0 +1,83 @@
+<!-- I don't know if I love EJS or hate autoformatting, screw this -->
+<% const renderCategory = ({id, title, color}) => { %>
+<div class="category" style="--color: <%= color %>" data-id="<%=id%>">
+  <p class="name"><%- title.replaceAll('-', '&#x2011;') %></p>
+</div>
+<% } %>
+<!---->
+<% const formatDate = d => `${d.substring(5,7)}/${d.substring(8,
+10)}/${d.substring(0,4)}`; const formatTime = d => d.substring(11, 16) %>
+<!---->
+<% const recruiter = users.find(u => u.id === recruitment.user_id) %>
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/core.css" />
+    <link rel="stylesheet" href="/static/css/recruitment.page.css" />
+    <title>Teamfinder</title>
+  </head>
+  <body>
+    <div id="main">
+      <div class="left"></div>
+      <div class="center">
+        <div id="recruitment">
+          <a href="/users/<%= recruiter.id %>"
+            ><img
+              src="<%= recruiter.profile_pic_url || '/static/img/default-profile-pic.jpg' %>"
+              alt="Photo de profil de <%= recruiter.nickname %>"
+              title="<%= recruiter.nickname %>"
+              class="profile-pic"
+          /></a>
+          <h1 class="title"><%= recruitment.title %></h1>
+          <p class="infos">
+            Publié par
+            <a href="/users/<%= recruiter.id %>"><%= recruiter.nickname %></a>
+            le <%= formatDate(recruitment.created) %> à <%=
+            formatTime(recruitment.created) %>
+          </p>
+          <% renderCategory(categories.find(({id})=>id==recruitment.category_id)) %>
+          <p class="description"><%= recruitment.description %></p>
+        </div>
+        <hr />
+        <h2>Candidatures</h2>
+        <div class="applications">
+          <% for (const a of applications) { const u=users.find(u=>u.id === a.user_id); %>
+          <div class="application">
+            <div class="infos">
+              <a href="/users/<%= u.id %>"
+                ><img
+                  src="<%= u.profile_pic_url || '/static/img/default-profile-pic.jpg' %>"
+                  alt="Photo de profil de <%= u.nickname %>"
+                  title="<%= u.nickname %>"
+                  class="profile-pic"
+              /></a>
+              <span>
+                <h3><%= u.nickname %></h3>
+                <p class="created">
+                  Posté le <%= formatDate(a.created) %> à <%= formatTime(a.created) %>
+                </p>
+                <p class="status s<%= a.status %>">Status:</p>
+              </span>
+            </div>
+            <p class="message"><%= a.message %></p>
+          </div>
+          <% } %>
+        </div>
+        <hr />
+        <h2>Proposer une candidature</h2>
+        <form id="postulate-form" method="post">
+          <textarea name="message"></textarea>
+          <input type="submit" value="Postuler" />
+        </form>
+      </div>
+      <div class="right"></div>
+    </div>
+  </body>
+</html>
+
+<script src="/static/js/notifications.js"></script>
+<script src="/static/js/topbar.js"></script>

@@ -20,6 +20,11 @@
 
 /* Recruitments! */
 
+.recruitment a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 .recruitment {
   position: relative;
   background-color: #3d3948;

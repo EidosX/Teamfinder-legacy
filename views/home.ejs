@@ -26,13 +26,14 @@
           <% for (const r of recruitments) { const user = users.find(({id}) => id ==
           r.user_id); %>
           <div class="recruitment">
-            <img
-              src="<%= user.profile_pic_url || '/static/img/default-profile-pic.jpg' %>"
-              alt="Photo de profil de <%= user.nickname %>"
-              title="<%= user.nickname %>"
-              class="profile-pic"
-            />
-            <h1 class="title"><%= r.title %></h1>
+            <a href="/users/<%= user.id %>"
+              ><img
+                src="<%= user.profile_pic_url || '/static/img/default-profile-pic.jpg' %>"
+                alt="Photo de profil de <%= user.nickname %>"
+                title="<%= user.nickname %>"
+                class="profile-pic"
+            /></a>
+            <h1 class="title"><a href="/recruitment/<%= r.id %>"><%= r.title %></a></h1>
             <div class="meta">
               <% renderCategory(categories.find(({id})=>id==r.category_id)) %>
               <p class="created">
