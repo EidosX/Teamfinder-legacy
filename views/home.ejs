@@ -21,12 +21,10 @@
     <div id="main">
       <div class="left"></div>
       <div class="center">
-        <div id="category-selector">
-          <% categories.forEach(renderCategory) %>
-        </div>
+        <div id="category-selector"><% categories.forEach(renderCategory) %></div>
         <div class="recruitment-feed">
-          <% for (const r of recruitments) { const user = users.find(({id}) =>
-          id == r.user_id); %>
+          <% for (const r of recruitments) { const user = users.find(({id}) => id ==
+          r.user_id); %>
           <div class="recruitment">
             <img
               src="<%= user.profile_pic_url || '/static/img/default-profile-pic.jpg' %>"
@@ -38,8 +36,7 @@
             <div class="meta">
               <% renderCategory(categories.find(({id})=>id==r.category_id)) %>
               <p class="created">
-                Publié le <%= formatDate(r.created) %> à
-                <%=formatTime(r.created) %>
+                Publié le <%= formatDate(r.created) %> à <%=formatTime(r.created) %>
               </p>
             </div>
             <p class="description"><%= r.description %></p>
@@ -52,4 +49,5 @@
   </body>
 </html>
 
+<script src="/static/js/notifications.js"></script>
 <script src="/static/js/topbar.js"></script>

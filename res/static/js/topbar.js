@@ -69,6 +69,17 @@
           setUserMenuState('signup')
           e.preventDefault()
         }
+        formDOM.onsubmit = async e => {
+          e.preventDefault()
+          const response = await fetch('/api/auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(new FormData(e.target)).toString()
+          }).then(r => r.json())
+          if (response.status === 'ERROR') return notify(response.message, 'error')
+          notify('Vous etes connecté!', 'ok')
+          setUserMenuState('connected')
+        }
         return formDOM
       }
       if (state === 'signup') {
@@ -99,13 +110,39 @@
           setUserMenuState('login')
           e.preventDefault()
         }
+        formDOM.onsubmit = async e => {
+          e.preventDefault()
+          if (e.target.elements.password.value !== e.target.elements.confirmation.value)
+            return notify('Le mot de passe ne correspond pas à la confirmation', 'error')
+          const response = await fetch('/api/users', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(new FormData(e.target)).toString()
+          }).then(r => r.json())
+          if (response.status === 'ERROR') return notify(response.message, 'error')
+          notify('Vôtre compte a été crée!', 'ok')
+          setTimeout(() => {
+            notify('Vous pouvez maintenant vous connecter', 'info', 6000)
+          }, 1000)
+          setUserMenuState('login')
+        }
         return formDOM
       }
       if (state === 'connected') {
         const divDOM = document.createElement('div')
         divDOM.innerHTML = `
           <button>Mon profil</button>
+          <button class="disconnect">Se deconnecter</button>
         `
+        divDOM.querySelector('.disconnect').onclick = async e => {
+          const response = await fetch('/api/auth', {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          }).then(r => r.json())
+          if (response.status === 'ERROR') return notify(response.message, 'error')
+          notify('Vous avez bien été déconnecté.', 'info')
+          setUserMenuState('login')
+        }
         return divDOM
       }
     }
@@ -116,7 +153,7 @@
     if (!e.target.matches('#user-menu input')) return
     setTimeout(() => {
       const placeholderDOM = e.target.parentNode.querySelector('.placeholder')
-      if (e.target.value ?? 0) placeholderDOM.classList.add('above')
+      if (e.target.value ?? 0) placeholderDOM?.classList.add('above')
       else placeholderDOM.classList.remove('above')
     }, 0)
   })
