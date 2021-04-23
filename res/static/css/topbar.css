@@ -113,6 +113,7 @@
   height: 2rem;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 1.4rem;
 }
 #user-menu input {
@@ -152,4 +153,22 @@
 }
 :is(.signup-instead, .login-instead):focus {
   color: white;
+}
+
+/* Placeholders */
+
+#user-menu .placeholder {
+  position: absolute;
+  color: #0000008a;
+  font-size: 0.9rem;
+  left: 3.5rem;
+  pointer-events: none;
+  user-select: none;
+
+  transition: 200ms ease-in-out;
+}
+#user-menu .placeholder.above {
+  transform: translate(-0.2rem, -1.6rem);
+  font-size: 0.7rem;
+  color: #ffffff81;
 }

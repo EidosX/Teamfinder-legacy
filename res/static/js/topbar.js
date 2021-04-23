@@ -53,9 +53,11 @@
         const formDOM = document.createElement('form')
         formDOM.innerHTML = `
           <div class="input">
+            <p class="placeholder">Pseudonyme</p>
             <input type="text" name="nickname">
           </div>
           <div class="input">
+            <p class="placeholder">Mot de passe</p>
             <input type="password" name="password">
           </div>
           <div class="input">
@@ -73,15 +75,19 @@
         const formDOM = document.createElement('form')
         formDOM.innerHTML = `
           <div class="input">
+            <p class="placeholder">Pseudonyme</p>
             <input type="text" name="nickname">
           </div>
           <div class="input">
+            <p class="placeholder">Adresse email</p>
             <input type="email" name="email">
           </div>
           <div class="input">
+            <p class="placeholder">Mot de passe</p>
             <input type="password" name="password">
           </div>
           <div class="input">
+            <p class="placeholder">Confirmation</p>
             <input type="password" name="confirmation">
           </div>
           <div class="input">
@@ -104,4 +110,14 @@
       }
     }
   }
+
+  /* Placeholder float events */
+  document.addEventListener('keydown', e => {
+    if (!e.target.matches('#user-menu input')) return
+    setTimeout(() => {
+      const placeholderDOM = e.target.parentNode.querySelector('.placeholder')
+      if (e.target.value) placeholderDOM.classList.add('above')
+      else placeholderDOM.classList.remove('above')
+    }, 0)
+  })
 }
