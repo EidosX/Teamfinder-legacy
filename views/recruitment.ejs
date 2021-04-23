@@ -78,12 +78,14 @@
           </div>
           <% } %>
         </div>
-        <hr />
-        <h2>Proposer une candidature</h2>
-        <form id="postulate-form" method="post">
-          <textarea name="message"></textarea>
-          <input type="submit" value="Postuler" />
-        </form>
+        <div id="postulate-section" class="<%= locals.user ? '' : 'hidden' %>">
+          <hr />
+          <h2>Proposer une candidature</h2>
+          <form id="postulate-form" method="post">
+            <textarea name="message"></textarea>
+            <input type="submit" value="Postuler" />
+          </form>
+        </div>
       </div>
       <div class="right"></div>
     </div>
