@@ -1,9 +1,21 @@
+:root {
+  --TOPBAR-HEIGHT: 4.5rem;
+}
+
 #topbar {
+  position: fixed;
+  z-index: 15;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #3d3948;
-  height: 4.5rem;
+  height: var(--TOPBAR-HEIGHT);
+  border-bottom: 1px solid #5b5862;
+  box-shadow: 0 0 1.5rem black;
+}
+#topbar-ghost {
+  height: var(--TOPBAR-HEIGHT);
 }
 
 #topbar :is(.logo, svg.logo > image) {

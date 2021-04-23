@@ -9,6 +9,7 @@
     </div>
     <svg class="user logo"><image href="/static/svg/user.svg" /></svg>
   </div>
+  <div id=topbar-ghost></div>
   `
   // Inject into html
   document.write('<link rel="stylesheet" href="/static/css/topbar.css">')
