@@ -21,8 +21,6 @@ if (!fs.existsSync(dbPath)) {
     table.string('email').unique()
     table.string('password').notNullable()
     table.integer('rank').notNullable().defaultTo(Ranks.DEFAULT)
-    table.string('facebook').nullable().defaultTo(null)
-    table.string('twitter').nullable().defaultTo(null)
     table.string('profile_pic_url').nullable()
   })
 
@@ -32,8 +30,7 @@ if (!fs.existsSync(dbPath)) {
     table.string('color').notNullable()
   })
   DefaultCategories.forEach(
-    async ({ title, color }) =>
-      await knex('Categories').insert({ title, color })
+    async ({ title, color }) => await knex('Categories').insert({ title, color })
   )
 
   await knex.schema.createTable('Recruitments', table => {
