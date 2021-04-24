@@ -11,7 +11,28 @@
   <body>
     <div id="main">
       <div class="left"></div>
-      <div class="center"></div>
+      <div class="center">
+        <form id="recruitment-form" method="post">
+          <div id="categories">
+            <a class="selected category"></a>
+            <hr />
+            <div class="list">
+              <% for (const c of categories) { %>
+              <a
+                class="category"
+                onclick="selectCategory('<%= c.id %>', '<%= c.title %>', '<%= c.color %>')"
+                style="--color: <%= c.color %>"
+                ><%= c.title %></a
+              >
+              <% } %>
+            </div>
+          </div>
+          <div id="category-selector-ghost"></div>
+          <input type="text" name="title" id="" />
+          <textarea name="message"></textarea>
+          <input type="submit" value="Postuler" />
+        </form>
+      </div>
       <div class="right"></div>
     </div>
   </body>
@@ -19,3 +40,26 @@
 
 <script src="/static/js/notifications.js"></script>
 <script src="/static/js/topbar.js"></script>
+<script>
+  const categoriesDOM = document.getElementById('categories')
+  categoriesDOM.style.setProperty(
+    '--JS-CALCULATED-HEIGHT',
+    categoriesDOM.getBoundingClientRect().height + 'px'
+  )
+  categoriesDOM.classList.add('closed')
+
+  document.querySelector('.selected.category').addEventListener('click', () => {
+    categoriesDOM.classList.toggle('closed')
+  })
+
+  let selectedCategory = -1
+  function selectCategory(id, title, color) {
+    selectedCategory = id
+    const selectedCategoryDOM = document.querySelector('.selected.category')
+
+    selectedCategoryDOM.style.setProperty('--color', color)
+    selectedCategoryDOM.innerHTML = title
+  }
+
+  selectCategory(1, '<%= categories[0].title %>', '<%= categories[0].color %>')
+</script>

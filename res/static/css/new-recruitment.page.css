@@ -1,0 +1,39 @@
+:root {
+  --CATEGORY-BUTTON-HEIGHT: 3rem;
+}
+
+#recruitment-form {
+  width: 100%;
+  background: rgba(144, 144, 144, 0.424);
+}
+#category-selector-ghost {
+  height: var(--CATEGORY-BUTTON-HEIGHT);
+}
+#categories {
+  border-radius: 1.5rem;
+  width: 15rem;
+  overflow: hidden;
+  position: absolute;
+  height: var(--JS-CALCULATED-HEIGHT);
+  transition: height 250ms;
+}
+#categories.closed {
+  height: var(--CATEGORY-BUTTON-HEIGHT);
+}
+#categories hr {
+  border: 2px solid rgb(255, 255, 255);
+}
+.category {
+  border-radius: 0;
+  user-select: none;
+  cursor: pointer;
+}
+.selected.category {
+  height: var(--CATEGORY-BUTTON-HEIGHT);
+  font-size: 1.2rem;
+}
+.list .category {
+  font-weight: 400;
+  height: 2.1rem;
+  border-top: 1px solid #00000042;
+}
