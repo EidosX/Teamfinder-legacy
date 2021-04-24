@@ -1,0 +1,68 @@
+<% function renderRank(id) { return id === 0 ? 'Utilisateur' : 'Modérateur' } %>
+<!---->
+<% var hasModifyRights = locals.user && thisUser.nickname == locals.user.nickname %>
+<!---->
+<% const renderCategory = ({id, title, color}) => { %>
+<div class="category" style="--color: <%= color %>" data-id="<%=id%>">
+  <p class="name"><%- title.replaceAll('-', '&#x2011;') %></p>
+</div>
+<% } %>
+<!---->
+<% const formatDate = d => `${d.substring(5,7)}/${d.substring(8,
+10)}/${d.substring(0,4)}`; const formatTime = d => d.substring(11, 16) %>
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/core.css" />
+    <link rel="stylesheet" href="/static/css/user.page.css" />
+    <script src="/static/js/user.page.js" defer></script>
+    <title>Teamfinder</title>
+  </head>
+  <body>
+    <div id="main">
+      <div class="left"></div>
+      <div class="center">
+        <div id="banner">
+          <img
+            src="<%= thisUser.profile_pic_url || '/static/img/default-profile-pic.jpg' %>"
+            alt="Photo de profil de <%= thisUser.nickname %>"
+            title="<%= thisUser.nickname %>"
+            id="profile-pic"
+          />
+          <span>
+            <h1 id="nickname"><%= thisUser.nickname %></h1>
+            <h3 id="rank"><%= renderRank(thisUser.rank) %></h3>
+          </span>
+          <% if (hasModifyRights) { %>
+          <span id="mod-actions">
+            <a href="#">Changer la photo de profil</a>
+            <a href="#">Supprimer le compte</a>
+          </span>
+          <% } %>
+        </div>
+        <hr />
+        <h1>Recrutements</h1>
+        <% for (const r of recruitments) {%>
+        <div class="recruitment">
+          <% renderCategory(categories.find(({id})=>id==r.category_id)) %>
+          <h3 class="title"><a href="/recruitment/<%= r.id %>"><%= r.title %></a></h3>
+          <p class="created">
+            Publié le <%= formatDate(r.created) %> à <%=formatTime(r.created) %>
+          </p>
+        </div>
+        <% } %>
+      </div>
+      <div class="right"></div>
+    </div>
+  </body>
+</html>
+
+<script src="/static/js/notifications.js"></script>
+<script src="/static/js/topbar.js"></script>
+<script>
+  var thisUserNickname = '<%= thisUser.nickname %>'
+  var hasModifyRights = '<%= hasModifyRights ? "1" : "" %>'
+</script>

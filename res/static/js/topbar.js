@@ -140,7 +140,7 @@ var myNickname = null
         const divDOM = document.createElement('div')
         divDOM.id = 'user-menu-connected'
         divDOM.innerHTML = `
-          <button>Mon profil <svg class="icon"><image href="/static/svg/edit.svg" /></svg></button>
+          <button class="profile">Mon profil <svg class="icon"><image href="/static/svg/edit.svg" /></svg></button>
           <button class="disconnect">Se deconnecter <svg class="icon"><image href="/static/svg/cross.svg" /></svg></button>
         `
         divDOM.querySelector('.disconnect').onclick = async e => {
@@ -153,6 +153,9 @@ var myNickname = null
           setUserMenuState('login')
           myNickname = null
           onDisconnectEvents.forEach(f => f())
+        }
+        divDOM.querySelector('.profile').onclick = () => {
+          window.location.href = '/users/me'
         }
         return divDOM
       }

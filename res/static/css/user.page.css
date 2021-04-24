@@ -1,0 +1,72 @@
+#banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+#profile-pic {
+  --SIZE: 7rem;
+  border-radius: 1000px;
+  width: var(--SIZE);
+  height: var(--SIZE);
+  margin-right: 1.5rem;
+}
+
+#nickname {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+#rank {
+  font-weight: 400;
+  font-size: 1rem;
+  position: relative;
+  top: -0.4rem;
+}
+
+#mod-actions {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  right: 0;
+  top: 1.5rem;
+}
+#mod-actions a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  line-height: 180%;
+}
+
+h1 {
+  margin: 0.7rem 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+hr {
+  margin-top: 1.5rem;
+  border-color: #676970;
+}
+.recruitment {
+  position: relative;
+  margin: 0.9rem 0;
+}
+
+.title a {
+  text-decoration: inherit;
+  color: inherit;
+  margin-right: 12rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+.category {
+  position: absolute;
+  right: 0;
+}
+.created {
+  color: #7b7988;
+}
