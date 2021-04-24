@@ -67,6 +67,10 @@
   margin-left: 0.8rem;
 }
 
+.description {
+  white-space: pre-line;
+}
+
 #new-recruitment-button,
 #new-recruitment-button image {
   --SIZE: 4.5rem;

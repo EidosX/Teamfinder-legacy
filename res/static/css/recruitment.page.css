@@ -36,6 +36,11 @@
   margin-top: 1rem;
 }
 
+.message,
+.description {
+  white-space: pre-line;
+}
+
 hr {
   margin: 2.5rem 0 1rem;
   border-color: #7b7d8d;
