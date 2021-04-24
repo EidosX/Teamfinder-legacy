@@ -27,7 +27,7 @@
               <% } %>
             </div>
           </div>
-          <h1>Publier un recrutement</h1>
+          <h1>Créer un recrutement</h1>
           <label for="title">Titre</label>
           <input type="text" name="title" id="" />
           <label for="description">Description</label>
@@ -54,7 +54,7 @@
     categoriesDOM.classList.toggle('closed')
   })
 
-  let selectedCategory = -1
+  let selectedCategory = null
   function selectCategory(id, title, color) {
     selectedCategory = id
     const selectedCategoryDOM = document.querySelector('.selected.category')
@@ -62,5 +62,24 @@
     selectedCategoryDOM.style.setProperty('--color', color)
     selectedCategoryDOM.innerHTML = title
     categoriesDOM.classList.add('closed')
+  }
+
+  /* Form submitting */
+
+  const formDOM = document.getElementById('recruitment-form')
+  formDOM.onsubmit = async e => {
+    e.preventDefault()
+    if (!selectedCategory ?? 0)
+      return notify('Veuillez selectionner une categorie', 'error')
+    const body = `${new URLSearchParams(
+      new FormData(e.target)
+    ).toString()}&category_id=${selectedCategory}`
+    const response = await fetch('/api/recruitments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body
+    }).then(r => r.json())
+    if (response.status === 'ERROR') return notify(response.message, 'error')
+    window.location.href = '/'
   }
 </script>
