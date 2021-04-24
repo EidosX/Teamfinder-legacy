@@ -22,10 +22,10 @@
       <div class="left"></div>
       <div class="center">
         <div id="category-selector"><% categories.forEach(renderCategory) %></div>
-        <div class="recruitment-feed">
+        <div id="recruitment-feed">
           <% for (const r of recruitments) { const user = users.find(({id}) => id ==
           r.user_id); %>
-          <div class="recruitment">
+          <div class="recruitment category<%= r.category_id %>">
             <a href="/users/<%= user.id %>"
               ><img
                 src="<%= user.profile_pic_url || '/static/img/default-profile-pic.jpg' %>"
