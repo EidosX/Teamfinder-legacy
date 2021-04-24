@@ -2,20 +2,28 @@
   --CATEGORY-BUTTON-HEIGHT: 3rem;
 }
 
+h1 {
+  margin: 2rem 0 1rem;
+  font-size: 2.7rem;
+  line-height: 110%;
+}
+
 #recruitment-form {
   width: 100%;
-  background: rgba(144, 144, 144, 0.424);
-}
-#category-selector-ghost {
-  height: var(--CATEGORY-BUTTON-HEIGHT);
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 #categories {
   border-radius: 1.5rem;
-  width: 15rem;
+  width: 13rem;
   overflow: hidden;
   position: absolute;
   height: var(--JS-CALCULATED-HEIGHT);
   transition: height 250ms;
+  right: 0;
+  top: 2rem;
+  z-index: 2;
 }
 #categories.closed {
   height: var(--CATEGORY-BUTTON-HEIGHT);
@@ -36,4 +44,22 @@
   font-weight: 400;
   height: 2.1rem;
   border-top: 1px solid #00000042;
+}
+
+input[type='submit'] {
+  position: relative;
+  margin-left: auto;
+  margin-top: 0.8rem;
+}
+
+textarea {
+  min-height: 14rem;
+}
+
+label {
+  position: relative;
+  top: 0.7rem;
+  font-weight: 600;
+  color: #9ca4ac;
+  line-height: 100%;
 }

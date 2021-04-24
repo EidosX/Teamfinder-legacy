@@ -12,9 +12,9 @@
     <div id="main">
       <div class="left"></div>
       <div class="center">
-        <form id="recruitment-form" method="post">
+        <form id="recruitment-form">
           <div id="categories">
-            <a class="selected category"></a>
+            <a class="selected category" style="--color: #aaa8af">Catégorie</a>
             <hr />
             <div class="list">
               <% for (const c of categories) { %>
@@ -27,10 +27,12 @@
               <% } %>
             </div>
           </div>
-          <div id="category-selector-ghost"></div>
+          <h1>Publier un recrutement</h1>
+          <label for="title">Titre</label>
           <input type="text" name="title" id="" />
-          <textarea name="message"></textarea>
-          <input type="submit" value="Postuler" />
+          <label for="description">Description</label>
+          <textarea name="description"></textarea>
+          <input type="submit" value="Publier le recrutement" />
         </form>
       </div>
       <div class="right"></div>
@@ -59,7 +61,6 @@
 
     selectedCategoryDOM.style.setProperty('--color', color)
     selectedCategoryDOM.innerHTML = title
+    categoriesDOM.classList.add('closed')
   }
-
-  selectCategory(1, '<%= categories[0].title %>', '<%= categories[0].color %>')
 </script>
