@@ -54,7 +54,7 @@ a {
 }
 
 textarea,
-input[type='text'] {
+.title-input {
   resize: vertical;
   min-height: 1.8rem;
   font-size: 1rem;
