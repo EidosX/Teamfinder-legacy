@@ -6,6 +6,7 @@
   margin-left: 0.8rem;
 }
 .notification {
+  position: relative;
   background-color: #25252c;
   border: 2px solid #bfc0d4;
   width: 24rem;
@@ -14,9 +15,9 @@
   align-items: center;
   border-radius: 1.2rem;
   box-shadow: 0 0 1rem #000000c5;
-
   transform: translateY(-4rem);
   opacity: 0;
+  pointer-events: none;
 }
 .notification,
 .ghost {
@@ -25,6 +26,7 @@
 .notification.proper-pos {
   transform: none;
   opacity: 1;
+  pointer-events: all;
 }
 .notification :is(.icon, svg.icon > image) {
   --size: 2.5rem;
@@ -35,4 +37,16 @@
 }
 .notification .message {
   text-overflow: clip;
+  word-wrap: break-word;
+  width: 18.5rem;
+}
+
+.notification :is(.close.icon, .close.icon image) {
+  --SIZE: 0.8rem;
+  width: var(--SIZE);
+  height: var(--SIZE);
+  position: absolute;
+  top: 1rem;
+  right: -0.1rem;
+  cursor: pointer;
 }

@@ -5,6 +5,7 @@ const notify = (message, type = 'info', time = 6000) => {
   notifDOM.innerHTML = `
     <svg class="icon"><image href="/static/svg/${type}-icon.svg" /></svg>
     <p class="message">${message}</p>
+    <svg class="close icon"><image href="/static/svg/cross-no-bg.svg" /></svg>
   `
   const notificationsDOM = document.getElementById('notifications')
   const ghostDOM = document.createElement('div')
@@ -16,15 +17,22 @@ const notify = (message, type = 'info', time = 6000) => {
   ghostDOM.style.height = 6 + notifDOM.getBoundingClientRect().height + 'px'
   notifDOM.style.position = 'absolute'
 
-  setTimeout(() => {
+  let timeoutTask2 = null
+  const killNotification = () => {
     notifDOM.classList.remove('proper-pos')
     ghostDOM.style.height = '0'
 
-    setTimeout(() => {
+    timeoutTask2 = setTimeout(() => {
       notificationsDOM.removeChild(notifDOM)
       notificationsDOM.removeChild(ghostDOM)
     }, 1000)
-  }, time)
+  }
+  let timeoutTask1 = setTimeout(killNotification, time)
+  notifDOM.querySelector('.close.icon').onclick = () => {
+    clearTimeout(timeoutTask1)
+    clearTimeout(timeoutTask2)
+    killNotification()
+  }
 }
 
 const notificationsDOM = document.createElement('div')
