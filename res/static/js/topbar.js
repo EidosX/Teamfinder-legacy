@@ -8,11 +8,11 @@ var myNickname = null
     <a href="/">
       <svg class="teamfinder logo"><image href="/static/svg/teamfinder-logo.svg" /></svg>
     </a>
-    <div class=search-bar>
+    <form class=search-bar id="topbar-search-bar">
       <svg class="mag-glass icon"><image href="/static/svg/mag-glass.svg" /></svg>
-      <svg class="arrow-right icon"><image href="/static/svg/arrow-right.svg" /></svg>
-      <input placeholder="Rechercher"></input>
-    </div>
+      <svg class="arrow-right icon" id="topbar-submit-btn"><image href="/static/svg/arrow-right.svg" /></svg>
+      <input placeholder="Rechercher" name="search"></input>
+    </form>
     <svg class="user logo"><image href="/static/svg/user.svg" /></svg>
   </div>
   <div id="topbar-ghost"></div>
@@ -23,6 +23,19 @@ var myNickname = null
   // Inject into html
   document.write('<link rel="stylesheet" href="/static/css/topbar.css">')
   document.body.innerHTML = htmlSrc + document.body.innerHTML
+
+  // Search bar
+
+  function performSearch() {
+    const search = document.getElementById('topbar-search-bar').elements.search.value
+    if (!search) return
+    window.location.href = '/search/' + encodeURI(search)
+  }
+  document.getElementById('topbar-search-bar').onsubmit = e => {
+    e.preventDefault()
+    performSearch()
+  }
+  document.getElementById('topbar-submit-btn').onclick = () => performSearch()
 
   // User Menu
 
