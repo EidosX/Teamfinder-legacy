@@ -23,7 +23,9 @@
 }
 
 /* Recruitments! */
-
+.recruitment .title {
+  padding-right: 3.5rem;
+}
 .recruitment a {
   color: inherit;
   text-decoration: inherit;
