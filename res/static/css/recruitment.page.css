@@ -10,7 +10,7 @@
 }
 
 #recruitment .profile-pic {
-  --SIZE: 7.6rem;
+  --SIZE: 7rem;
   border-radius: 1000px;
   position: absolute;
   right: 0.5rem;
@@ -21,7 +21,7 @@
 #recruitment .title {
   margin-top: 2rem;
   font-size: 3.1rem;
-  padding-right: 7rem;
+  padding-right: 8rem;
   line-height: 110%;
 }
 #recruitment .infos {
