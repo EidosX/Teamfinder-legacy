@@ -148,7 +148,7 @@ const socket = io()
   })
 
   socket.on('privmsg', ({ msg, fromId, read }) => {
-    if (selectedUserID === fromId) {
+    if (selectedUserID === fromId && !document.querySelector('#chat.hidden')) {
       read = true
       socket.emit('read-all-from-user', { userId: fromId })
     }
