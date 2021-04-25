@@ -7,7 +7,12 @@ const socket = io()
   divDOM.innerHTML = `
     <div id="chat">
       <div id="chat-userlist"></div>
-      <div id="chat-msg-container"></div>
+      <div class="right">
+        <div id="chat-msg-container"></div>
+        <form>
+          <input id="chat-input" type="text" placeholder="Entrez un message . . .">
+        </form>
+      </div>
     </div>
   `
   document.body.prepend(divDOM.children[0])
@@ -37,14 +42,15 @@ const socket = io()
         <div class="messages uid${strangerId}"></div>
       `
     }
-    const msgDOM = document.createElement('p')
-    msgDOM.className = 'message uid' + strangerId
-    if (isMyMsg) msgDOM.classList.add('mine')
-    msgDOM.innerText = msg
+    const msgDivDOM = document.createElement('div')
+    msgDivDOM.className = `message uid${strangerId} ${isMyMsg ? 'mine' : ''}`
+    msgDivDOM.innerHTML = `
+      <p>${msg}</p>
+    `
     document
       .getElementById('chat-msg-container')
       .querySelector(`.messages.uid${strangerId}`)
-      .append(msgDOM)
+      .append(msgDivDOM)
   }
 
   function clear() {
