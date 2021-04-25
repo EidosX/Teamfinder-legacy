@@ -12,12 +12,24 @@
 }
 
 #chat-userlist {
-  flex: 1.2;
   background-color: #3d3948;
   border-right: 1px solid #48454e;
+  width: 12rem;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 #chat-userlist .user {
   cursor: pointer;
+  line-height: 3rem;
+  padding: 0 1rem;
+  white-space: nowrap;
+  border-bottom: 1px solid #4a4850;
+}
+#chat-userlist .user.selected {
+  background-color: #0b87bd;
+}
+#chat-userlist .user p {
+  pointer-events: none;
 }
 
 #chat .right {
@@ -44,15 +56,17 @@
 
 #chat-msg-container {
   position: relative;
-  background-color: #222429;
+  height: 22rem;
 }
 #chat .messages {
-  position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
-  top: 0;
-  padding: 0.8rem;
+  padding: 0.9rem;
+  height: 100%;
+  overflow: auto;
+}
+#chat .messages.hidden {
+  display: none;
 }
 
 #chat .message {
@@ -61,7 +75,7 @@
 
 #chat .message > p {
   background-color: #3d3948;
-  border-radius: 1000px;
+  border-radius: 1.2rem;
   padding: 0.5rem 1rem;
 }
 #chat .message:not(:last-child) > p {

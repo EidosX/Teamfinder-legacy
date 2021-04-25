@@ -1,6 +1,8 @@
 const socket = io()
 {
   let myUserId = null
+  let selectedUserID = null
+
   /* INIT DOM */
 
   const divDOM = document.createElement('div')
@@ -9,14 +11,22 @@ const socket = io()
       <div id="chat-userlist"></div>
       <div class="right">
         <div id="chat-msg-container"></div>
-        <form>
-          <input id="chat-input" type="text" placeholder="Entrez un message . . .">
+        <form id=chat-form>
+          <input id="chat-input" type="text" autocomplete="off" placeholder="Entrez un message . . .">
         </form>
       </div>
     </div>
   `
   document.body.prepend(divDOM.children[0])
   document.write('<link rel="stylesheet" href="/static/css/chat.css">')
+
+  document.getElementById('chat-form').onsubmit = e => {
+    e.preventDefault()
+    if (!selectedUserID || !myUserId) return
+    inputDOM = document.getElementById('chat-input')
+    sendMsg(inputDOM.value, selectedUserID)
+    inputDOM.value = ''
+  }
 
   function addMsg(msg, fromId, toId) {
     const strangerId = myUserId === fromId ? toId : fromId
@@ -39,7 +49,7 @@ const socket = io()
         </div>
       `
       document.getElementById('chat-msg-container').innerHTML += `
-        <div class="messages uid${strangerId}"></div>
+        <div class="messages uid${strangerId} hidden"></div>
       `
     }
     const msgDivDOM = document.createElement('div')
@@ -47,16 +57,41 @@ const socket = io()
     msgDivDOM.innerHTML = `
       <p>${msg}</p>
     `
-    document
+    const msgsDOM = document
       .getElementById('chat-msg-container')
       .querySelector(`.messages.uid${strangerId}`)
-      .append(msgDivDOM)
+    const fullScroll =
+      msgsDOM.scrollTop - msgsDOM.scrollHeight + msgsDOM.offsetHeight == 0
+    msgsDOM.append(msgDivDOM)
+    if (fullScroll) msgsDOM.scrollTop = msgsDOM.scrollHeight
   }
 
   function clear() {
     document.getElementById('chat-userlist').innerHTML = ''
     document.getElementById('chat-msg-container').innerHTML = ''
   }
+
+  /* User selection */
+  document.addEventListener('click', e => {
+    if (!e.target.matches('#chat-userlist .user')) return
+    const isSelected = e.target.classList.contains('selected')
+    for (const e of document.getElementById('chat-userlist').children)
+      e.classList.remove('selected')
+    if (!isSelected) {
+      selectedUserID = parseInt(
+        Array.from(e.target.classList)
+          .find(s => s.startsWith('uid'))
+          .substring(3)
+      )
+      e.target.classList.add('selected')
+    } else selectedUserID = null
+    for (const e of document.getElementById('chat-msg-container').children) {
+      if (e.classList.contains('uid' + selectedUserID)) {
+        e.classList.remove('hidden')
+        e.scrollTop = e.scrollHeight
+      } else e.classList.add('hidden')
+    }
+  })
 
   /* SOCKET IO */
 
