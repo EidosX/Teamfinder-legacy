@@ -1,9 +1,17 @@
-import { ok, err } from './ApiTools.js'
+import { ok, err, okWith } from './ApiTools.js'
 import bcrypt from 'bcrypt'
 import { Ranks } from '../../misc/Ranks.js'
 import db from '../../database.js'
 
 export default function usersAPI({ app }) {
+  app.get('/api/users/', async (req, res) => {
+    if (!parseInt(req.query.id)) return res.send(err("ID d'utilisateur invalide"))
+    const user = await db('Users')
+      .where('id', '=', req.query.id)
+      .select('nickname', 'rank', 'profile_pic_url')
+      .first()
+    res.send(okWith(user))
+  })
   app.post('/api/users', async (req, res) => {
     if (res.locals.user) return res.send(err('Vous etes déjà connecté'))
     const nickname = req.body.nickname
