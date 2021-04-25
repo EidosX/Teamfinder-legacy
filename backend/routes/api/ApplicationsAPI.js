@@ -1,6 +1,8 @@
 import { ok, err } from './ApiTools.js'
 import { authHookJson } from '../../hooks/AuthHook.js'
 import db from '../../database.js'
+import { io } from '../../server.js'
+import { sendPrivMsg } from '../../socketio/initSocketIO.js'
 import { ApplicationStatus } from '../../misc/Applications.js'
 
 export default function applicationsAPI({ app }) {
@@ -19,5 +21,13 @@ export default function applicationsAPI({ app }) {
       return res.send(err('Vous ne pouvez pas gerer les recrutements des autres'))
     await db('Applications').update({ status }).where('id', '=', req.params.id)
     res.send(ok())
+    if (status == ApplicationStatus.VALIDATED) {
+      await sendPrivMsg(
+        io,
+        '__application_accepted;recruitment:' + recruitment.id,
+        res.locals.user.id,
+        application.user_id
+      )
+    }
   })
 }

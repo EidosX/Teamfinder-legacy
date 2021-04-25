@@ -52,10 +52,21 @@ const socket = io()
         <div class="messages uid${strangerId} hidden"></div>
       `
     }
+    let isSpecial = false
+    const tmp = '__application_accepted;recruitment:'
+    if (msg.startsWith(tmp)) {
+      const rId = msg.substr(tmp.length)
+      msg = `Candidature acceptée pour <a href=/recruitment/${rId}>ce recrutement</a>`
+      isSpecial = true
+    }
+
     if (!read && !isMyMsg)
       userlistDOM.querySelector('.uid' + strangerId).classList.add('unread')
     const msgDivDOM = document.createElement('div')
-    msgDivDOM.className = `message uid${strangerId} ${isMyMsg ? 'mine' : ''}`
+    msgDivDOM.className = 'message uid' + strangerId
+    if (isMyMsg) msgDivDOM.classList.add('mine')
+    if (isSpecial) msgDivDOM.classList.add('special')
+
     msgDivDOM.innerHTML = `
       <p>${msg}</p>
     `
@@ -106,7 +117,6 @@ const socket = io()
     myUserId = response.yourId
     for (const { from_id, to_id, message, read } of response.msgHistory)
       addMsg(message, from_id, to_id, read)
-    console.log(response)
     console.log('Socket.io connected')
   })
   socket.on('disconnect', () => {
