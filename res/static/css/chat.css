@@ -13,6 +13,13 @@
 
   --TEXT-INPUT-HEIGHT: 2.3rem;
 }
+#chat.with-trans {
+  transition: transform 500ms ease-in-out;
+}
+
+#chat.hidden {
+  transform: translateY(110%);
+}
 
 #chat-userlist {
   background-color: #3d3948;
@@ -115,4 +122,24 @@
 }
 #chat .message.special a {
   color: inherit;
+}
+
+#chat-open-btn,
+#chat-open-btn image {
+  --SIZE: 4.5rem;
+  width: var(--SIZE);
+  height: var(--SIZE);
+  position: absolute;
+  z-index: 6;
+  left: 0.8rem;
+  bottom: 0.8rem;
+  cursor: pointer;
+}
+#chat-open-btn.with-trans {
+  transition: opacity 300ms;
+}
+
+#chat-open-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
 }

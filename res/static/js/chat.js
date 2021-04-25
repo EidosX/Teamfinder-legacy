@@ -7,7 +7,7 @@ const socket = io()
 
   const divDOM = document.createElement('div')
   divDOM.innerHTML = `
-    <div id="chat">
+    <div id="chat" class="hidden">
       <div id="chat-userlist"></div>
       <div class="right">
         <div id="chat-msg-container"></div>
@@ -16,9 +16,19 @@ const socket = io()
         </form>
       </div>
     </div>
+    <div>
+    <svg id="chat-open-btn" class="hidden"><image href="/static/svg/message.svg" /></svg>
   `
-  document.body.prepend(divDOM.children[0])
+  document.body.prepend(...divDOM.children)
   document.write('<link rel="stylesheet" href="/static/css/chat.css">')
+
+  document.getElementById('chat-open-btn').onclick = () =>
+    document.getElementById('chat').classList.toggle('hidden')
+
+  setTimeout(() => {
+    document.getElementById('chat-open-btn').classList.add('with-trans')
+    document.getElementById('chat').classList.add('with-trans')
+  }, 200)
 
   document.getElementById('chat-form').onsubmit = e => {
     e.preventDefault()
@@ -120,6 +130,7 @@ const socket = io()
     myUserId = response.yourId
     for (const { from_id, to_id, message, read } of response.msgHistory)
       addMsg(message, from_id, to_id, read)
+    document.getElementById('chat-open-btn').classList.remove('hidden')
     console.log('Socket.io connected')
   })
   socket.on('disconnect', () => {
@@ -127,6 +138,8 @@ const socket = io()
     myUserId = null
     selectedUserID = null
     console.log('Socket.io disconnected')
+    document.getElementById('chat-open-btn').classList.add('hidden')
+    document.getElementById('chat').classList.add('hidden')
   })
 
   socket.on('privmsg', ({ msg, fromId, read }) => {
