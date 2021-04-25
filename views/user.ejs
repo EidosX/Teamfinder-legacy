@@ -57,11 +57,18 @@
       </div>
       <div class="right"></div>
     </div>
+    <a href="/new-recruitment">
+      <svg class="icon <%= locals.user ? '' : 'hidden' %>" id="new-recruitment-button">
+        <image href="/static/svg/plus.svg" />
+      </svg>
+    </a>
   </body>
 </html>
 
 <script src="/static/js/notifications.js"></script>
 <script src="/static/js/topbar.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/static/js/chat.js"></script>
 <script>
   var thisUserNickname = '<%= thisUser.nickname %>'
   var hasModifyRights = '<%= hasModifyRights ? "1" : "" %>'
