@@ -42,7 +42,8 @@ export default function initSocketIO({ io }) {
 export async function sendPrivMsg(io, msg, fromId, toId) {
   if (toId === fromId) return
   for (const [_, s] of io.of('/').sockets) {
-    if (s.user?.id == toId) s.emit('privmsg', { msg, fromId: fromId, read: 0 })
+    if (s.user?.id == toId || s.user?.id == fromId)
+      s.emit('privmsg', { msg, fromId, toId, read: 0 })
   }
   await db('Messages').insert({ from_id: fromId, to_id: toId, message: msg })
 }

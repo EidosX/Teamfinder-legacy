@@ -147,12 +147,12 @@ const socket = io()
     document.getElementById('chat').classList.add('hidden')
   })
 
-  socket.on('privmsg', ({ msg, fromId, read }) => {
+  socket.on('privmsg', ({ msg, fromId, toId, read }) => {
     if (selectedUserID === fromId && !document.querySelector('#chat.hidden')) {
       read = true
       socket.emit('read-all-from-user', { userId: fromId })
     }
-    addMsg(msg, fromId, myUserId, read)
+    addMsg(msg, fromId, toId, read)
   })
 
   onLoginEvents.push(() => {
@@ -162,7 +162,6 @@ const socket = io()
   onDisconnectEvents.push(() => socket.disconnect())
 
   function sendMsg(msg, toId) {
-    addMsg(msg, myUserId, toId)
     socket.emit('privmsg', { msg, toId })
   }
 }
