@@ -11,6 +11,8 @@ async function setApplicationStatus(applicationID, status) {
 
   applicationDOM.classList.remove('status0')
   applicationDOM.classList.add('status' + status)
+
+  if (status === 1) document.getElementById('chat-open-btn').classList.add('unread')
 }
 
 onLoginEvents.push(() => {
