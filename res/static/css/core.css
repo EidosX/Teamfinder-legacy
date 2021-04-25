@@ -91,3 +91,11 @@ input[type='submit'] {
 input[type='submit']:focus {
   border: 2px solid #ffffff;
 }
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+::-webkit-scrollbar-thumb {
+  background: #56565d;
+  border-radius: 100px;
+}
