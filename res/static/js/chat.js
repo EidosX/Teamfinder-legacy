@@ -111,6 +111,8 @@ const socket = io()
   })
   socket.on('disconnect', () => {
     clear()
+    myUserId = null
+    selectedUserID = null
     console.log('Socket.io disconnected')
   })
 
