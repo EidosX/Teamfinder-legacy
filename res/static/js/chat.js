@@ -28,7 +28,7 @@ const socket = io()
     inputDOM.value = ''
   }
 
-  function addMsg(msg, fromId, toId) {
+  function addMsg(msg, fromId, toId, read = true) {
     const strangerId = myUserId === fromId ? toId : fromId
     const isMyMsg = myUserId === fromId
 
@@ -52,6 +52,8 @@ const socket = io()
         <div class="messages uid${strangerId} hidden"></div>
       `
     }
+    if (!read && !isMyMsg)
+      userlistDOM.querySelector('.uid' + strangerId).classList.add('unread')
     const msgDivDOM = document.createElement('div')
     msgDivDOM.className = `message uid${strangerId} ${isMyMsg ? 'mine' : ''}`
     msgDivDOM.innerHTML = `
@@ -84,6 +86,9 @@ const socket = io()
           .substring(3)
       )
       e.target.classList.add('selected')
+
+      e.target.classList.remove('unread')
+      socket.emit('read-all-from-user', { userId: selectedUserID })
     } else selectedUserID = null
     for (const e of document.getElementById('chat-msg-container').children) {
       if (e.classList.contains('uid' + selectedUserID)) {
@@ -99,8 +104,8 @@ const socket = io()
     if (response.status !== 'CONNECTED') return socket.disconnect()
 
     myUserId = response.yourId
-    for (const { from_id, to_id, message } of response.msgHistory)
-      addMsg(message, from_id, to_id)
+    for (const { from_id, to_id, message, read } of response.msgHistory)
+      addMsg(message, from_id, to_id, read)
     console.log(response)
     console.log('Socket.io connected')
   })

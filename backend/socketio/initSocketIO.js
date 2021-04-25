@@ -11,7 +11,7 @@ export default function initSocketIO({ io }) {
       const msgHistory = await db('Messages')
         .where('from_id', '=', socket.user.id)
         .orWhere('to_id', '=', socket.user.id)
-        .select('from_id', 'to_id', 'message')
+        .select('id', 'from_id', 'to_id', 'message', 'read')
 
       socket.emit('connection-status', {
         status: 'CONNECTED',
@@ -30,6 +30,15 @@ export default function initSocketIO({ io }) {
         if (s.user?.id == toId) s.emit('privmsg', { msg, fromId: socket.user.id })
       }
       await db('Messages').insert({ from_id: socket.user.id, to_id: toId, message: msg })
+    })
+
+    socket.on('read-all-from-user', async ({ userId }) => {
+      if (!socket.user?.id) return
+      if (!parseInt(userId)) return
+      await db('Messages')
+        .update({ read: 1 })
+        .where('from_id', '=', userId)
+        .andWhere('to_id', '=', socket.user.id)
     })
   })
 }

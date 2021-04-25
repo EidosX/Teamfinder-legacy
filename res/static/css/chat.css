@@ -32,6 +32,9 @@
 #chat-userlist .user.selected {
   background-color: #0b87bd;
 }
+#chat-userlist .user.unread {
+  background-color: #be1616;
+}
 #chat-userlist .user p {
   pointer-events: none;
 }
