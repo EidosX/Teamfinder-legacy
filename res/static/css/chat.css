@@ -143,3 +143,7 @@
   opacity: 0;
   pointer-events: none;
 }
+
+#chat-open-btn.unread {
+  filter: hue-rotate(170deg);
+}

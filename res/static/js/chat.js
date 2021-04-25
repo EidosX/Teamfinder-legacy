@@ -73,8 +73,11 @@ const socket = io()
       isSpecial = true
     }
 
-    if (!read && !isMyMsg)
-      userlistDOM.querySelector('.uid' + strangerId).classList.add('unread')
+    if (!read && !isMyMsg) {
+      const userInListDOM = userlistDOM.querySelector('.uid' + strangerId)
+      userInListDOM.classList.add('unread')
+      document.getElementById('chat-open-btn').classList.add('unread')
+    }
     const msgDivDOM = document.createElement('div')
     msgDivDOM.className = 'message uid' + strangerId
     if (isMyMsg) msgDivDOM.classList.add('mine')
@@ -112,6 +115,8 @@ const socket = io()
       e.target.classList.add('selected')
 
       e.target.classList.remove('unread')
+      if (!e.target.parentElement.querySelector('.unread'))
+        document.getElementById('chat-open-btn').classList.remove('unread')
       socket.emit('read-all-from-user', { userId: selectedUserID })
     } else selectedUserID = null
     for (const e of document.getElementById('chat-msg-container').children) {
