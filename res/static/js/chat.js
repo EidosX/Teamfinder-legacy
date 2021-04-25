@@ -56,7 +56,10 @@ const socket = io()
     const tmp = '__application_accepted;recruitment:'
     if (msg.startsWith(tmp)) {
       const rId = msg.substr(tmp.length)
-      msg = `Candidature acceptée pour <a href=/recruitment/${rId}>ce recrutement</a>`
+      if (isMyMsg)
+        msg = `Vous avez accepté sa candidature pour <a href=/recruitment/${rId}>ce recrutement</a>`
+      else
+        msg = `Votre candidature a été acceptée pour <a href=/recruitment/${rId}>ce recrutement</a>`
       isSpecial = true
     }
 

@@ -1,5 +1,6 @@
 #chat {
   position: fixed;
+  z-index: 5;
   display: flex;
   left: 0;
   bottom: 0;
@@ -42,6 +43,7 @@
 #chat .right {
   flex: 2;
   position: relative;
+  background-color: #1a1c21;
 }
 
 #chat-input {
@@ -91,6 +93,9 @@
   padding: 0.5rem 1rem;
   margin-bottom: 0.3rem;
 }
+#chat .message:first-child > p {
+  margin-top: 0.6rem;
+}
 #chat .message:last-child > p {
   margin-bottom: 1rem;
 }
@@ -99,4 +104,15 @@
 }
 #chat .message.mine > p {
   background-color: #0a9bda;
+}
+#chat .message.special > p {
+  background-color: transparent;
+  width: 100%;
+  text-align: center;
+  line-height: 125%;
+  color: #a7aabb;
+  font-size: 0.9rem;
+}
+#chat .message.special a {
+  color: inherit;
 }
