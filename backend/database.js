@@ -24,6 +24,14 @@ if (!fs.existsSync(dbPath)) {
     table.string('profile_pic_url').nullable()
   })
 
+  await knex.schema.createTable('Messages', table => {
+    table.increments('id')
+    table.datetime('created').notNullable().defaultTo(knex.fn.now())
+    table.integer('from_id').notNullable().unsigned().references('Users.id')
+    table.integer('to_id').notNullable().unsigned().references('Users.id')
+    table.string('message').notNullable()
+  })
+
   await knex.schema.createTable('Categories', table => {
     table.increments('id')
     table.string('title').notNullable()
