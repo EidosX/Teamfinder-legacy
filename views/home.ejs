@@ -59,3 +59,8 @@
 <script src="/static/js/topbar.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/static/js/chat.js"></script>
+<% if (typeof notifications !== 'undefined') { for (const n of notifications) { %>
+<script>
+  notify('<%=n.message%>', '<%=n.type%>')
+</script>
+<% } } %>

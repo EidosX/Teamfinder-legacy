@@ -1,3 +1,5 @@
-export const sendToErrorPage = (res, msg, url = '/') => {
-  res.send('(TODO PAGE) Error: ' + msg)
+import { homePageMiddleware } from './pages/HomePage.js'
+export const sendToErrorPage = (res, msg) => {
+  res.locals.notifications = [{ message: msg, type: 'error' }]
+  homePageMiddleware(res)
 }
