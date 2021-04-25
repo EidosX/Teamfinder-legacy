@@ -26,10 +26,11 @@ if (!fs.existsSync(dbPath)) {
 
   await knex.schema.createTable('Messages', table => {
     table.increments('id')
-    table.datetime('created').notNullable().defaultTo(knex.fn.now())
     table.integer('from_id').notNullable().unsigned().references('Users.id')
     table.integer('to_id').notNullable().unsigned().references('Users.id')
     table.string('message').notNullable()
+    table.integer('read').notNullable().defaultTo(0)
+    table.datetime('created').notNullable().defaultTo(knex.fn.now())
   })
 
   await knex.schema.createTable('Categories', table => {
