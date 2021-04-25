@@ -116,8 +116,12 @@ const socket = io()
     console.log('Socket.io disconnected')
   })
 
-  socket.on('privmsg', ({ msg, fromId }) => {
-    addMsg(msg, fromId, myUserId)
+  socket.on('privmsg', ({ msg, fromId, read }) => {
+    if (selectedUserID === fromId) {
+      read = true
+      socket.emit('read-all-from-user', { userId: fromId })
+    }
+    addMsg(msg, fromId, myUserId, read)
   })
 
   onLoginEvents.push(() => {

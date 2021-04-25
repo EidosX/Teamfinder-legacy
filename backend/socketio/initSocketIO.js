@@ -25,11 +25,7 @@ export default function initSocketIO({ io }) {
     socket.on('privmsg', async ({ msg, toId }) => {
       if (!socket.user) return
       if (!toId || !msg) return
-      if (toId === socket.user.id) return
-      for (const [_, s] of io.of('/').sockets) {
-        if (s.user?.id == toId) s.emit('privmsg', { msg, fromId: socket.user.id })
-      }
-      await db('Messages').insert({ from_id: socket.user.id, to_id: toId, message: msg })
+      sendPrivMsg(io, msg, socket.user.id, toId)
     })
 
     socket.on('read-all-from-user', async ({ userId }) => {
@@ -41,4 +37,12 @@ export default function initSocketIO({ io }) {
         .andWhere('to_id', '=', socket.user.id)
     })
   })
+}
+
+export async function sendPrivMsg(io, msg, fromId, toId) {
+  if (toId === fromId) return
+  for (const [_, s] of io.of('/').sockets) {
+    if (s.user?.id == toId) s.emit('privmsg', { msg, fromId: fromId, read: 0 })
+  }
+  await db('Messages').insert({ from_id: fromId, to_id: toId, message: msg })
 }
