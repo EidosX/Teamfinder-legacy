@@ -9,6 +9,8 @@
   overflow: hidden;
   border-top-right-radius: 1.5rem;
   box-shadow: 0 0 1rem black;
+
+  --TEXT-INPUT-HEIGHT: 2.3rem;
 }
 
 #chat-userlist {
@@ -17,6 +19,8 @@
   width: 12rem;
   overflow-x: hidden;
   overflow-y: auto;
+  z-index: 1;
+  box-shadow: 0 0 0.8rem #00000071;
 }
 #chat-userlist .user {
   cursor: pointer;
@@ -48,21 +52,26 @@
   background-color: #322f3a;
   color: white;
   font-family: 'Poppins', 'sans serif';
-  height: 2.3rem;
+  height: var(--TEXT-INPUT-HEIGHT);
   outline: none;
   border: none;
-  padding: 0 0.5rem;
+  padding: 0 0.8rem;
+  box-shadow: 0 0 1rem black;
 }
 
 #chat-msg-container {
-  position: relative;
-  height: 22rem;
+  position: absolute;
+  height: calc(100% - var(--TEXT-INPUT-HEIGHT));
+  width: 100%;
+  box-sizing: border-box;
 }
 #chat .messages {
   left: 0;
   right: 0;
-  padding: 0.9rem;
+  width: 100%;
   height: 100%;
+  padding: 0 0.9rem;
+  box-sizing: border-box;
   overflow: auto;
 }
 #chat .messages.hidden {
@@ -77,9 +86,10 @@
   background-color: #3d3948;
   border-radius: 1.2rem;
   padding: 0.5rem 1rem;
-}
-#chat .message:not(:last-child) > p {
   margin-bottom: 0.3rem;
+}
+#chat .message:last-child > p {
+  margin-bottom: 1rem;
 }
 #chat .message.mine {
   justify-content: flex-end;
