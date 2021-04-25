@@ -129,7 +129,7 @@
   --SIZE: 4.5rem;
   width: var(--SIZE);
   height: var(--SIZE);
-  position: absolute;
+  position: fixed;
   z-index: 6;
   left: 0.8rem;
   bottom: 0.8rem;
