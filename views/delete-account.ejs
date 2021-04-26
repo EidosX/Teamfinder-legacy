@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/core.css" />
+
+    <title>Teamfinder</title>
+  </head>
+  <body>
+    <div id="main" style="height: calc(100vh - var(--TOPBAR-HEIGHT))">
+      <div class="left"></div>
+      <div class="center" style="display: grid; place-items: center">
+        <form
+          style="display: flex; flex-direction: column; align-items: center"
+          id="delete-account-form"
+        >
+          <h2 style="text-align: center; width: 30rem; margin-bottom: 1.5rem">
+            Entrez votre mot de passe pour confirmer la suppression de votre compte:
+          </h2>
+          <input
+            style="
+              width: 20rem;
+              height: 2rem;
+              border-radius: 100px;
+              font-size: 1.2rem;
+              outline: none;
+              padding: 0 0.8rem;
+              margin-bottom: 0.4rem;
+            "
+            type="password"
+            name="password"
+          />
+          <input
+            style="background-color: #ff3b3b"
+            type="submit"
+            value="Supprimer le compte"
+          />
+        </form>
+      </div>
+      <div class="right"></div>
+    </div>
+    <a href="/new-recruitment">
+      <svg class="icon <%= locals.user ? '' : 'hidden' %>" id="new-recruitment-button">
+        <image href="/static/svg/plus.svg" />
+      </svg>
+    </a>
+  </body>
+</html>
+
+<script src="/static/js/notifications.js"></script>
+<script src="/static/js/topbar.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/static/js/chat.js"></script>
+<script>
+  document.getElementById('delete-account-form').onsubmit = async e => {
+    e.preventDefault()
+    const confirmationStr =
+      'ATTENTION: La suppression de votre compte implique la suppression de tous vos recrutements, toutes vos candidatures et toutes les candidatures des autres pour vos recrutements.'
+    if (!confirm(confirmationStr)) return
+    const body = new URLSearchParams(new FormData(e.target)).toString()
+    const response = await fetch('/api/users', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body
+    }).then(r => r.json())
+    if (response.status === 'ERROR') return notify(response.message, 'error')
+    window.location.href = '/'
+  }
+</script>

@@ -1,5 +1,6 @@
 import { ok, err, okWith } from './ApiTools.js'
 import bcrypt from 'bcrypt'
+import { authHook } from '../../hooks/AuthHook.js'
 import { Ranks } from '../../misc/Ranks.js'
 import db from '../../database.js'
 
@@ -41,5 +42,18 @@ export default function usersAPI({ app }) {
     })
 
     res.send(ok())
+  })
+  app.delete('/api/users', authHook, async (req, res) => {
+    if (!req.body.password)
+      return res.send(
+        err('Entrez votre mot de passe pour confirmer la suppression de votre compte')
+      )
+
+    if (!bcrypt.compareSync(req.body.password, res.locals.user.password))
+      return res.send(err('Mot de passe invalide'))
+
+    await db('Users').where({ id: res.locals.user.id }).del()
+    delete req.session.userId
+    return res.send(ok('Votre compte a été supprimé.'))
   })
 }
