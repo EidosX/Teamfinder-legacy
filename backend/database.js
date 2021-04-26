@@ -26,8 +26,8 @@ if (!fs.existsSync(dbPath)) {
 
   await knex.schema.createTable('Messages', table => {
     table.increments('id')
-    table.integer('from_id').notNullable().unsigned().references('Users.id')
-    table.integer('to_id').notNullable().unsigned().references('Users.id')
+    table.integer('from_id').notNullable().references('Users.id').onDelete('CASCADE')
+    table.integer('to_id').notNullable().references('Users.id').onDelete('CASCADE')
     table.string('message').notNullable()
     table.integer('read').notNullable().defaultTo(0)
     table.datetime('created').notNullable().defaultTo(knex.fn.now())
@@ -44,8 +44,8 @@ if (!fs.existsSync(dbPath)) {
 
   await knex.schema.createTable('Recruitments', table => {
     table.increments('id')
-    table.integer('user_id').unsigned().references('Users.id')
-    table.integer('category_id').unsigned().references('Categories.id')
+    table.integer('user_id').references('Users.id').onDelete('CASCADE')
+    table.integer('category_id').references('Categories.id')
     table.string('title').notNullable()
     table.string('description').notNullable()
     table.datetime('created').notNullable().defaultTo(knex.fn.now())
@@ -53,11 +53,13 @@ if (!fs.existsSync(dbPath)) {
 
   await knex.schema.createTable('Applications', table => {
     table.increments('id')
-    table.integer('user_id').unsigned().references('Users.id')
-    table.integer('recruitment_id').unsigned().references('Recruitments.id')
+    table.integer('user_id').references('Users.id').onDelete('CASCADE')
+    table.integer('recruitment_id').references('Recruitments.id').onDelete('CASCADE')
     table.string('message').notNullable()
     table.integer('status').defaultTo(ApplicationStatus.WAITING)
     table.datetime('created').notNullable().defaultTo(knex.fn.now())
   })
 }
 export default knex
+
+await knex.raw('PRAGMA foreign_keys = ON')
