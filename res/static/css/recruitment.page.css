@@ -12,6 +12,7 @@
 #recruitment .profile-pic {
   --SIZE: 7rem;
   border-radius: 1000px;
+  object-fit: cover;
   position: absolute;
   right: 0.5rem;
   width: var(--SIZE);
@@ -57,6 +58,7 @@ h2 {
 
 .application .profile-pic {
   --SIZE: 4rem;
+  object-fit: cover;
   border-radius: 1000px;
   width: var(--SIZE);
   height: var(--SIZE);

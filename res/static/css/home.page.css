@@ -46,6 +46,7 @@
 .recruitment .profile-pic {
   border-radius: 1000px;
   --size: 6rem;
+  object-fit: cover;
   width: var(--size);
   height: var(--size);
   position: absolute;
