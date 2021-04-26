@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/core.css" />
+    <link rel="stylesheet" href="/static/css/change-profile-picture.page.css" />
+    <title>Teamfinder</title>
+  </head>
+  <body>
+    <div id="main">
+      <div class="left"></div>
+      <div class="center">
+        <form id="drop-zone" method="post" enctype="multipart/form-data">
+          <input type="file" name="profilepic" id="drop-zone-input" />
+          <svg id="drop-zone-icon">
+            <image href="/static/svg/circle-plus.svg" />
+          </svg>
+          <p>Choisissez une image</p>
+        </form>
+      </div>
+      <div class="right"></div>
+    </div>
+    <a href="/new-recruitment">
+      <svg class="icon <%= locals.user ? '' : 'hidden' %>" id="new-recruitment-button">
+        <image href="/static/svg/plus.svg" />
+      </svg>
+    </a>
+  </body>
+</html>
+
+<script src="/static/js/notifications.js"></script>
+<script src="/static/js/topbar.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/static/js/chat.js"></script>
+<script>
+  document.getElementById('drop-zone-input').onchange = function () {
+    document.getElementById('drop-zone').submit()
+  }
+</script>

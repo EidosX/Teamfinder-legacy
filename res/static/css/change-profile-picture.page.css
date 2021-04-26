@@ -1,0 +1,51 @@
+body {
+  height: 100vh;
+}
+#main {
+  height: calc(100vh - var(--TOPBAR-HEIGHT));
+}
+#main .center {
+  display: grid;
+  place-items: center;
+}
+
+#drop-zone-icon,
+#drop-zone-icon image {
+  --SIZE: 8rem;
+  width: var(--SIZE);
+  height: var(--SIZE);
+}
+
+#drop-zone p {
+  color: #ffffff;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  bottom: 1.5rem;
+  user-select: none;
+  pointer-events: none;
+}
+
+#drop-zone {
+  --SIZE: 20rem;
+  position: relative;
+  width: var(--SIZE);
+  height: var(--SIZE);
+  background-color: #2690d6;
+  display: grid;
+  place-items: center;
+  border-radius: 1.5rem;
+  border: 0 solid #ffffff;
+
+  transition: border 200ms ease-out;
+}
+#drop-zone:hover {
+  border: 0.5rem solid #ffffff;
+}
+#drop-zone-input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}

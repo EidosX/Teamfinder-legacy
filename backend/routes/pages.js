@@ -3,6 +3,7 @@ import search from './pages/SearchPage.js'
 import recruitment from './pages/RecruitmentPage.js'
 import newRecruitment from './pages/NewRecruitmentPage.js'
 import user from './pages/UserPage.js'
+import changeProfilePicture from './pages/ChangeProfilePicturePage.js'
 
 export default async function initPagesRoutes({ app }) {
   home({ app })
@@ -10,4 +11,5 @@ export default async function initPagesRoutes({ app }) {
   recruitment({ app })
   newRecruitment({ app })
   user({ app })
+  changeProfilePicture({ app })
 }
